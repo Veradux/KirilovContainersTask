@@ -1,9 +1,10 @@
-package com.bhtech.kirilovcontainerstask
+package com.bhtech.kirilovcontainerstask.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.MainActivityBinding
-import com.bhtech.kirilovcontainerstask.ui.main.login.LoginFragment
+import com.bhtech.kirilovcontainerstask.ui.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.bhtech.kirilovcontainerstask.ui.main.login
+package com.bhtech.kirilovcontainerstask.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
