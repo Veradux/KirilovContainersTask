@@ -1,4 +1,4 @@
-package com.bhtech.kirilovbhtechtask.ui.main
+package com.bhtech.kirilovcontainerstask.ui.main
 
 import androidx.lifecycle.ViewModel
 

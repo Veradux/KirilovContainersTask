@@ -1,4 +1,4 @@
-package com.bhtech.kirilovbhtechtask.ui.main
+package com.bhtech.kirilovcontainerstask.ui.main
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bhtech.kirilovbhtechtask.R
+import com.bhtech.kirilovcontainerstask.R
 
 class LoginFragment : Fragment() {
 
