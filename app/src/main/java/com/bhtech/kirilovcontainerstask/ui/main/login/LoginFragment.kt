@@ -1,4 +1,4 @@
-package com.bhtech.kirilovcontainerstask.ui.main
+package com.bhtech.kirilovcontainerstask.ui.main.login
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
