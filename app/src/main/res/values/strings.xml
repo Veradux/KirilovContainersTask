@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KirilovContainersTask</string>
+    <string name="login_et_username_hint">Username</string>
 </resources>
