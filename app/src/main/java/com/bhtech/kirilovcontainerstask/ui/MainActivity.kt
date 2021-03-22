@@ -3,22 +3,22 @@ package com.bhtech.kirilovcontainerstask.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bhtech.kirilovcontainerstask.R
-import com.bhtech.kirilovcontainerstask.databinding.MainActivityBinding
-import com.bhtech.kirilovcontainerstask.ui.login.LoginFragment
+import com.bhtech.kirilovcontainerstask.screennavigator.Screen
+import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: MainActivityBinding
+    @Inject lateinit var navigator: ScreenNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, LoginFragment.newInstance())
-                .commitNow()
+        if(savedInstanceState == null) {
+            navigator.navigateTo(Screen.LOGIN)
         }
     }
 }
