@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="login_edit_text_margin">32dp</dimen>
+    <dimen name="round_corners_drawable_radius">16dp</dimen>
+    <dimen name="login_edit_text_padding">16dp</dimen>
+    <dimen name="login_edit_text_size">24sp</dimen>
 </resources>
