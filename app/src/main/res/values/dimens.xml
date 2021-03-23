@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="screen_edge_margin">32dp</dimen>
-    <dimen name="round_corners_drawable_radius">8dp</dimen>
-    <dimen name="containers_logo_size">256dp</dimen>
-    <dimen name="button_vertical_margin">16dp</dimen>
+    <dimen name="margin_screen_edge">24dp</dimen>
+    <dimen name="margin_half_screen_edge">12dp</dimen>
+    <dimen name="margin_vertical">12dp</dimen>
 
-    <dimen name="login_edit_text_padding">16dp</dimen>
-    <dimen name="login_edit_text_size">24sp</dimen>
+    <dimen name="padding_default">16dp</dimen>
+
+    <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_title">32sp</dimen>
+    <dimen name="text_size_content">24sp</dimen>
+
+    <dimen name="round_corners_drawable_radius">16dp</dimen>
+
+    <dimen name="img_size_logo">256dp</dimen>
 </resources>
