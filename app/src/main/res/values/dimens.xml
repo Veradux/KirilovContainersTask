@@ -4,4 +4,5 @@
     <dimen name="login_edit_text_padding">16dp</dimen>
     <dimen name="login_edit_text_size">24sp</dimen>
     <dimen name="round_corners_drawable_radius">8dp</dimen>
+    <dimen name="containers_logo_size">256dp</dimen>
 </resources>
