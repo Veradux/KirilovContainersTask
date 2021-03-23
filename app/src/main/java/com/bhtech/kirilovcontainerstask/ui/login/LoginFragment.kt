@@ -15,17 +15,15 @@ import javax.inject.Inject
 class LoginFragment : Fragment() {
 
     //private val viewModel: LoginViewModel by viewModels()
-    private lateinit var binding: FragmentLoginBinding
-
     @Inject lateinit var navigator: ScreenNavigator
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
-        setUsernameListener()
+        val binding = FragmentLoginBinding.inflate(inflater, container, false)
+        setUsernameListener(binding)
         return binding.root
     }
 
-    private fun setUsernameListener() {
+    private fun setUsernameListener(binding: FragmentLoginBinding) {
         binding.etUsername.setOnEditorActionListener { textView, action, _ ->
             if (action == EditorInfo.IME_ACTION_DONE && textView.text.isNotBlank()) {
                 // TODO save the username to shared prefs, so that it can be used in the BLE screen.

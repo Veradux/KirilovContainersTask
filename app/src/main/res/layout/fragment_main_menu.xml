@@ -1,53 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/iv_login_logo"
-        android:layout_width="@dimen/containers_logo_size"
-        android:layout_height="@dimen/containers_logo_size"
-        android:layout_marginVertical="@dimen/screen_edge_margin"
-        android:padding="@dimen/login_edit_text_padding"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
-    <Button
-        android:id="@+id/btn_main_menu_bluetooth"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/screen_edge_margin"
-        android:layout_marginVertical="@dimen/button_vertical_margin"
-        android:background="@drawable/round_corners_view"
-        android:text="@string/bluetooth_detection"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_login_logo" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_main_menu_map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/screen_edge_margin"
-        android:layout_marginVertical="@dimen/button_vertical_margin"
-        android:background="@drawable/round_corners_view"
-        android:text="@string/map"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_main_menu_bluetooth" />
+        <ImageView
+            android:id="@+id/iv_login_logo"
+            android:layout_width="@dimen/containers_logo_size"
+            android:layout_height="@dimen/containers_logo_size"
+            android:layout_marginVertical="@dimen/screen_edge_margin"
+            android:padding="@dimen/login_edit_text_padding"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
-    <Button
-        android:id="@+id/btn_main_menu_disconnect"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/screen_edge_margin"
-        android:layout_marginVertical="@dimen/button_vertical_margin"
-        android:background="@drawable/round_corners_view"
-        android:text="@string/disconnect"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_main_menu_map" />
+        <Button
+            android:id="@+id/btn_main_menu_bluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_edge_margin"
+            android:layout_marginVertical="@dimen/button_vertical_margin"
+            android:background="@drawable/round_corners_view"
+            android:text="@string/bluetooth_detection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_login_logo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_main_menu_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_edge_margin"
+            android:layout_marginVertical="@dimen/button_vertical_margin"
+            android:background="@drawable/round_corners_view"
+            android:text="@string/map"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_main_menu_bluetooth" />
+
+        <Button
+            android:id="@+id/btn_main_menu_disconnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_edge_margin"
+            android:layout_marginVertical="@dimen/button_vertical_margin"
+            android:background="@drawable/round_corners_view"
+            android:text="@string/disconnect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_main_menu_map" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
