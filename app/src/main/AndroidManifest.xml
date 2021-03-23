@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bhtech.kirilovcontainerstask">
 
+    <uses-feature android:name="android.software.companion_device_setup" />
+
     <application
         android:name=".ContainersApplication"
         android:allowBackup="false"
