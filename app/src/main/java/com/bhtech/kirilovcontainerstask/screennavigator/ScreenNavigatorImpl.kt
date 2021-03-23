@@ -3,6 +3,7 @@ package com.bhtech.kirilovcontainerstask.screennavigator
 import androidx.fragment.app.FragmentActivity
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
+import com.bhtech.kirilovcontainerstask.ui.MainMenuFragment
 import com.bhtech.kirilovcontainerstask.ui.login.LoginFragment
 import javax.inject.Inject
 
@@ -19,5 +20,6 @@ class ScreenNavigatorImpl @Inject constructor(private val activity: FragmentActi
 
     private fun getCorrespondingFragmentTo(screen: Screen) = when (screen) {
         Screen.LOGIN -> LoginFragment()
+        Screen.MAIN -> MainMenuFragment()
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bhtech.kirilovcontainerstask.databinding.LoginFragmentBinding
@@ -16,11 +17,20 @@ class LoginFragment : Fragment() {
 
     private val viewModel: LoginViewModel by viewModels()
     private lateinit var binding: LoginFragmentBinding
-
     @Inject lateinit var navigator: ScreenNavigator
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginFragmentBinding.inflate(inflater, container, false)
+        setUsernameListener()
         return binding.root
+    }
+
+    private fun setUsernameListener() {
+        binding.etUsername.setOnEditorActionListener { _, action, _ ->
+            if (action == EditorInfo.IME_ACTION_DONE) {
+                navigator.navigateTo(ScreenNavigator.Screen.MAIN)
+            }
+            false
+        }
     }
 }
