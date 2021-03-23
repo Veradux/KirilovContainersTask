@@ -51,6 +51,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    // Json parser
+    implementation 'com.beust:klaxon:5.5'
+
     // UI
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 

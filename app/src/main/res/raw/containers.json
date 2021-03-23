@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Container VEECH01",
+    "street": "Avenue de la République",
+    "city": "Échirolles",
+    "zipcode": 38130,
+    "gps": {
+      "lat": 45.143211,
+      "lng": 5.728879
+    },
+    "wasteType": "Glass",
+    "fillingLevel": 10
+  },
+  {
+    "name": "Container PAPBH01",
+    "street": "12 rue ampère",
+    "city": "Grenoble",
+    "zipcode": 38000,
+    "gps": {
+      "lat": 45.185096,
+      "lng": 5.705613
+    },
+    "wasteType": "Paper",
+    "fillingLevel": 86
+  },
+  {
+    "name": "Container OMGRE01",
+    "street": "Hyper-centre de Grenoble",
+    "city": "Grenoble",
+    "zipcode": 38000,
+    "gps": {
+      "lat": 45.187862,
+      "lng": 5.7295
+    },
+    "wasteType": "Household Garbage",
+    "fillingLevel": 55
+  },
+  {
+    "name": "Container VEGEM04",
+    "street": "9 rue pierre semard",
+    "city": "Grenoble",
+    "zipcode": 38000,
+    "gps": {
+      "lat": 45.190184,
+      "lng": 5.712854
+    },
+    "wasteType": "Glass",
+    "fillingLevel": 3
+  },
+  {
+    "name": "Container OMGAR07",
+    "street": "6 Place de la Gare",
+    "city": "Grenoble",
+    "zipcode": 38000,
+    "gps": {
+      "lat": 45.190421,
+      "lng": 5.715827
+    },
+    "wasteType": "Household Garbage",
+    "fillingLevel": 97
+  },
+  {
+    "name": "Container PAPST03",
+    "street": "15 Chemin de la Rochette",
+    "city": "Grenoble",
+    "zipcode": 38000,
+    "gps": {
+      "lat": 45.196072,
+      "lng": 5.718869
+    },
+    "wasteType": "Paper",
+    "fillingLevel": 33
+  },
+  {
+    "name": "Container VEUNI02",
+    "street": "1051-901 Avenue Centrale",
+    "city": "Saint-Martin-d'Hères",
+    "zipcode": 38400,
+    "gps": {
+      "lat": 45.19151,
+      "lng": 5.769126
+    },
+    "wasteType": "Glass",
+    "fillingLevel": 40
+  },
+  {
+    "name": "Container OMUNI02",
+    "street": "Boulevard des Alpes",
+    "city": "Meylan",
+    "zipcode": 38240,
+    "gps": {
+      "lat": 45.202127,
+      "lng": 5.765202
+    },
+    "wasteType": "Household Garbage",
+    "fillingLevel": 85
+  },
+  {
+    "name": "Container PAPST02",
+    "street": "Rue de l'Isère",
+    "city": "Saint-Egrève",
+    "zipcode": 38120,
+    "gps": {
+      "lat": 45.225595,
+      "lng": 5.670981
+    },
+    "wasteType": "Paper",
+    "fillingLevel": 75
+  }
+]
