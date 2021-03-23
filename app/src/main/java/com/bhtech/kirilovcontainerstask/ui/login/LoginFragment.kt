@@ -14,7 +14,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    //private val viewModel: LoginViewModel by viewModels()
     @Inject lateinit var navigator: ScreenNavigator
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

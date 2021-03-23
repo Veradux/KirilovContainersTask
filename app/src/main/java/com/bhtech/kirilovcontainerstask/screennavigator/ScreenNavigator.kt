@@ -11,6 +11,7 @@ interface ScreenNavigator {
      */
     enum class Screen {
         LOGIN,
-        MAIN
+        MAIN,
+        BLUETOOTH
     }
 }
