@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">KirilovContainersTask</string>
     <string name="login_et_username_hint">Username</string>
+    <string name="bluetooth_detection">Bluetooth Detection</string>
+    <string name="map">Map</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

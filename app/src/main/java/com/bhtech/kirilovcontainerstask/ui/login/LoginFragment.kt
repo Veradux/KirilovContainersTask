@@ -26,8 +26,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun setUsernameListener() {
-        binding.etUsername.setOnEditorActionListener { _, action, _ ->
-            if (action == EditorInfo.IME_ACTION_DONE) {
+        binding.etUsername.setOnEditorActionListener { textView, action, _ ->
+            if (action == EditorInfo.IME_ACTION_DONE && textView.text.isNotBlank()) {
+                // TODO save the username to shared prefs, so that it can be used in the BLE screen.
                 navigator.navigateTo(ScreenNavigator.Screen.MAIN)
             }
             false
