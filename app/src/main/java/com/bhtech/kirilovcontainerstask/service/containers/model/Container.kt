@@ -1,6 +1,6 @@
 package com.bhtech.kirilovcontainerstask.service.containers.model
 
-data class ContainerModel(
+data class Container(
     val name: String,
     val street: String,
     val city: String,
