@@ -3,8 +3,8 @@ package com.bhtech.kirilovcontainerstask.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bhtech.kirilovcontainerstask.R
-import com.bhtech.kirilovcontainerstask.screennavigator.Screen
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
+import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
