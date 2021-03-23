@@ -13,7 +13,7 @@
             android:id="@+id/iv_login_logo"
             android:layout_width="@dimen/containers_logo_size"
             android:layout_height="@dimen/containers_logo_size"
-            android:layout_marginVertical="@dimen/login_edit_text_margin"
+            android:layout_marginVertical="@dimen/screen_edge_margin"
             android:padding="@dimen/login_edit_text_padding"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
@@ -21,12 +21,12 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
-
         <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/login_edit_text_margin"
+            android:layout_marginHorizontal="@dimen/screen_edge_margin"
+            android:layout_marginVertical="@dimen/button_vertical_margin"
             android:background="@drawable/round_corners_view"
             android:hint="@string/login_et_username_hint"
             android:importantForAutofill="no"
