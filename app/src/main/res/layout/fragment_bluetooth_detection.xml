@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,6 +13,75 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_bluetooth_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Username" />
+
+        <TextView
+            android:id="@+id/tv_bluetooth_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="@id/tv_bluetooth_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_bluetooth_username"
+            tools:text="15:56 3/23/21" />
+
+        <TextView
+            android:id="@+id/tv_last_updated_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="@id/tv_bluetooth_username"
+            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_username"
+            tools:text="Last updated 4 seconds ago" />
+
+        <TextView
+            android:id="@+id/tv_bluetooth_detected_devices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:padding="@dimen/padding_default"
+            android:textSize="@dimen/text_size_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_last_updated_at"
+            tools:text="Device 1\nDevice 2" />
+
+        <Button
+            android:id="@+id/btn_bluetooth_display_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_screen_edge"
+            android:layout_marginStart="@dimen/margin_screen_edge"
+            android:layout_marginEnd="@dimen/margin_half_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:text="@string/display_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_bluetooth_display_map"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_bluetooth_display_map"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_screen_edge"
+            android:layout_marginStart="@dimen/margin_half_screen_edge"
+            android:layout_marginEnd="@dimen/margin_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:text="@string/display_map"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_bluetooth_display_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
