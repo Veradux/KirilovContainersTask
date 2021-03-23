@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.bhtech.kirilovcontainerstask.databinding.LoginFragmentBinding
+import com.bhtech.kirilovcontainerstask.databinding.FragmentLoginBinding
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -15,12 +14,13 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
-    private val viewModel: LoginViewModel by viewModels()
-    private lateinit var binding: LoginFragmentBinding
+    //private val viewModel: LoginViewModel by viewModels()
+    private lateinit var binding: FragmentLoginBinding
+
     @Inject lateinit var navigator: ScreenNavigator
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = LoginFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         setUsernameListener()
         return binding.root
     }
