@@ -23,6 +23,7 @@ class ContainersMenuViewModel @Inject constructor() : ViewModel() {
     }
 
     val containersState = MutableLiveData<ContainersState>().apply { value = ContainersState.Loading }
+    var selectedContainer: Container? = null
 
     fun loadContainers() {
         val backgroundJob = viewModelScope.async(Dispatchers.IO) { containersService.getAllContainers() }

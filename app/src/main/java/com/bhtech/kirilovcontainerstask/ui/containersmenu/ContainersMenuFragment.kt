@@ -8,22 +8,33 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.bhtech.kirilovcontainerstask.databinding.FragmentContainersMenuBinding
+import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
+import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel.ContainersState
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ContainersMenuFragment : Fragment() {
 
     private val viewModel: ContainersMenuViewModel by viewModels()
     private lateinit var binding: FragmentContainersMenuBinding
+    @Inject lateinit var navigator: ScreenNavigator
+    private val containersRvAdapter = ContainersAdapter { container -> onContainerClicked(container) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentContainersMenuBinding.inflate(inflater, container, false)
-        setUpContainersRecyclerView(binding.rvContainers)
+        configureViews(binding)
         return binding.root
+    }
+
+    private fun configureViews(binding: FragmentContainersMenuBinding) {
+        binding.rvContainers.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        binding.rvContainers.adapter = containersRvAdapter
+
+        binding.btnMap.setOnClickListener { navigator.navigateTo(Screen.MAP) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,8 +42,9 @@ class ContainersMenuFragment : Fragment() {
         viewModel.loadContainers()
     }
 
-    private fun setUpContainersRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+    private fun onContainerClicked(container: Container) {
+        navigator.navigateTo(Screen.EDIT_CONTAINER)
+        viewModel.selectedContainer = container
     }
 
     private fun onContainersStateChange(containersState: ContainersState) {
@@ -45,9 +57,7 @@ class ContainersMenuFragment : Fragment() {
 
     private fun showContainers(containers: List<Container>) {
         binding.pbContainersLoadingSpinner.visibility = View.GONE
-        val adapter = ContainersAdapter()
-        binding.rvContainers.adapter = adapter
-        adapter.submitList(containers)
+        containersRvAdapter.submitList(containers)
     }
 
     private fun showContainersLoading() {

@@ -6,12 +6,13 @@ interface ScreenNavigator {
 
     /**
      * Contains all available screen fragments.
-     *
      * Used by ScreenNavigator as a way to tell which fragment to place in the main activity.
      */
     enum class Screen {
         LOGIN,
         MAIN,
-        CONTAINERS
+        CONTAINERS,
+        EDIT_CONTAINER,
+        MAP
     }
 }

@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bhtech.kirilovcontainerstask.databinding.ItemContainerBinding
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
 
-class ContainersAdapter : ListAdapter<Container, ContainersAdapter.ContainerViewHolder>(Companion) {
+class ContainersAdapter(private val listener: (Container) -> Unit) :
+    ListAdapter<Container, ContainersAdapter.ContainerViewHolder>(Companion) {
 
     class ContainerViewHolder(val binding: ItemContainerBinding) : RecyclerView.ViewHolder(binding.root)
 
-    companion object: DiffUtil.ItemCallback<Container>() {
+    companion object : DiffUtil.ItemCallback<Container>() {
         override fun areItemsTheSame(old: Container, new: Container) = old === new
         override fun areContentsTheSame(old: Container, new: Container) = old == new
     }
@@ -28,5 +29,6 @@ class ContainersAdapter : ListAdapter<Container, ContainersAdapter.ContainerView
         val currentContainer = getItem(position)
         holder.binding.container = currentContainer
         holder.binding.executePendingBindings()
+        holder.itemView.setOnClickListener { listener(currentContainer) }
     }
 }
