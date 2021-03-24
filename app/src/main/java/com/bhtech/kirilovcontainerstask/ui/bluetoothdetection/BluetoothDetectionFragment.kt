@@ -26,10 +26,27 @@ class BluetoothDetectionFragment : Fragment() {
     @Inject lateinit var navigator: ScreenNavigator
     private lateinit var binding: FragmentBluetoothDetectionBinding
 
+    private val companionCallback = object : CompanionDeviceManager.Callback() {
+        override fun onDeviceFound(chooserLauncher: IntentSender) {
+            startIntentSenderForResult(
+                chooserLauncher,
+                0, null, 0, 0, 0, null
+            )
+        }
+
+        override fun onFailure(error: CharSequence?) {
+            // Handle the failure.
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentBluetoothDetectionBinding.inflate(inflater, container, false)
-        binding.btnBluetoothDisplayList.setOnClickListener { detectDevices() }
+        configureViews(binding)
         return binding.root
+    }
+
+    private fun configureViews(binding: FragmentBluetoothDetectionBinding) {
+        binding.btnBluetoothDisplayList.setOnClickListener { detectDevices() }
     }
 
     private fun detectDevices() {
@@ -41,22 +58,7 @@ class BluetoothDetectionFragment : Fragment() {
             .build()
 
         val deviceManager = requireContext().getSystemService(COMPANION_DEVICE_SERVICE) as CompanionDeviceManager
-
-        deviceManager.associate(
-            pairingRequest,
-            object : CompanionDeviceManager.Callback() {
-                override fun onDeviceFound(chooserLauncher: IntentSender) {
-                    startIntentSenderForResult(
-                        chooserLauncher,
-                        0, null, 0, 0, 0, null
-                    )
-                }
-
-                override fun onFailure(error: CharSequence?) {
-                    // Handle the failure.
-                }
-            }, null
-        )
+        deviceManager.associate(pairingRequest, companionCallback, null)
     }
 
     /** @deprecated use
@@ -72,7 +74,6 @@ class BluetoothDetectionFragment : Fragment() {
         when (requestCode) {
             0 -> when (resultCode) {
                 Activity.RESULT_OK -> {
-                    // The user chose to pair the app with a Bluetooth device.
                     val scanResult = data?.getParcelableExtra(CompanionDeviceManager.EXTRA_DEVICE) as ScanResult?
                     binding.tvBluetoothDetectedDevices.text = scanResult.toString()
                 }

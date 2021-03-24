@@ -37,15 +37,6 @@
             tools:text="15:56 3/23/21" />
 
         <TextView
-            android:id="@+id/tv_last_updated_at"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_small"
-            app:layout_constraintStart_toStartOf="@id/tv_bluetooth_username"
-            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_username"
-            tools:text="Last updated 4 seconds ago" />
-
-        <TextView
             android:id="@+id/tv_bluetooth_detected_devices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +45,7 @@
             android:padding="@dimen/padding_default"
             android:textSize="@dimen/text_size_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_last_updated_at"
+            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_username"
             tools:text="Device 1\nDevice 2" />
 
         <Button
