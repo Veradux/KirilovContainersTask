@@ -9,8 +9,3 @@ data class Container(
     val wasteType: String,
     val fillingLevel: Int
 )
-
-data class Gps(
-    val lat: Double,
-    val lng: Double
-)
