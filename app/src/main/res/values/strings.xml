@@ -4,4 +4,9 @@
     <string name="bluetooth_detection">Bluetooth Detection</string>
     <string name="map">Map</string>
     <string name="disconnect">Disconnect</string>
+
+    <string name="gps_longitude">GPS longitude: %1$s</string>
+    <string name="gps_latitude">GPS latitude: %1$s</string>
+    <string name="waste_type">Waste type: %1$s</string>
+    <string name="filling_level">Filling level: %1$s</string>
 </resources>
