@@ -11,5 +11,6 @@ class ContainersMenuViewModel @Inject constructor() : ViewModel() {
 
     @Inject lateinit var containersService: ContainersService
 
+    // TODO don't do this on the UI thread
     fun getContainers(): List<Container> = containersService.getAllContainers()
 }

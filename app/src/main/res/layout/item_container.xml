@@ -13,8 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_margin="@dimen/button_vertical_margin"
-        android:background="@drawable/round_corners_view"
         android:padding="@dimen/login_edit_text_padding">
 
         <TextView

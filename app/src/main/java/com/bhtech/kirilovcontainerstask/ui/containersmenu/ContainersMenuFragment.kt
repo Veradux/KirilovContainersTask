@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentContainersMenuBinding
@@ -24,7 +25,9 @@ class ContainersMenuFragment : Fragment() {
     }
 
     private fun setUpContainersRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.screen_edge_margin).toInt()))
+        val margin = resources.getDimension(R.dimen.screen_edge_margin).toInt()
+        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+
         recyclerView.adapter = ContainersAdapter().also { it.submitList(viewModel.getContainers()) }
     }
 }
