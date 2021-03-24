@@ -25,15 +25,20 @@ class ContainersMenuViewModel @Inject constructor() : ViewModel() {
     val containersState = MutableLiveData<ContainersState>().apply { value = ContainersState.Loading }
     var selectedContainer: Container? = null
 
-    fun loadContainers() {
-        val backgroundJob = viewModelScope.async(Dispatchers.IO) { containersService.getAllContainers() }
-        viewModelScope.launch { receiveContainers(backgroundJob.await()) }
-    }
-
     private fun receiveContainers(list: List<Container>) {
         when {
             list.isEmpty() -> containersState.value = ContainersState.Empty
             list.isNotEmpty() -> containersState.value = ContainersState.Loaded(list)
         }
+    }
+
+    fun loadContainers() {
+        val backgroundJob = viewModelScope.async(Dispatchers.IO) { containersService.getAllContainers() }
+        viewModelScope.launch { receiveContainers(backgroundJob.await()) }
+    }
+
+    fun getContainers() = when (val state = containersState.value) {
+        is ContainersState.Loaded -> state.containers
+        else -> emptyList()
     }
 }

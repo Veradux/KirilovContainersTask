@@ -18,6 +18,7 @@
             android:id="@+id/tv_no_containers_loaded_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/no_containers_found_message"
             android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,6 +36,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_screen_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/screen_edge_margin"
+            android:text="@string/containers_screen_title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_containers"
             android:layout_width="match_parent"
@@ -43,20 +54,31 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/btn_map"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_screen_title"
             tools:listitem="@layout/item_container" />
+
+        <Spinner
+            android:id="@+id/spn_filter_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_edge_margin"
+            android:background="@drawable/round_corners_view"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_screen_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_screen_title" />
 
         <Button
             android:id="@+id/btn_map"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="80dp"
             android:layout_marginBottom="@dimen/screen_edge_margin"
             android:background="@drawable/round_corners_view"
             android:text="@string/map"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_containers" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
