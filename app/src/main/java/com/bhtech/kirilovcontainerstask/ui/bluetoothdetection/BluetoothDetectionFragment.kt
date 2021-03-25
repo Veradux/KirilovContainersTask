@@ -5,6 +5,7 @@ import android.bluetooth.le.ScanResult
 import android.companion.AssociationRequest
 import android.companion.BluetoothLeDeviceFilter
 import android.companion.CompanionDeviceManager
+import android.content.Context
 import android.content.Context.COMPANION_DEVICE_SERVICE
 import android.content.IntentSender
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentBluetoothDetectionBinding
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,9 +54,13 @@ class BluetoothDetectionFragment : Fragment() {
     }
 
     private fun configureViews(binding: FragmentBluetoothDetectionBinding) {
+        binding.tvBluetoothUsername.text = getSavedUsernameFromPrefs()
         binding.btnBluetoothLeDevice.setOnClickListener { detectDevices() }
         binding.btnBluetoothDisplayList.setOnClickListener { navigator.navigateTo(ScreenNavigator.Screen.CONTAINERS) }
     }
+
+    private fun getSavedUsernameFromPrefs(): String = activity?.getPreferences(Context.MODE_PRIVATE)
+        ?.getString(getString(R.string.username_pref_key), "") ?: ""
 
     private fun detectDevices() {
         val leDeviceFilter = BluetoothLeDeviceFilter.Builder().build()

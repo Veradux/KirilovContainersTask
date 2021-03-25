@@ -32,6 +32,7 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:padding="@dimen/padding_default"
+            android:selectAllOnFocus="true"
             android:textSize="@dimen/text_size_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -40,13 +40,13 @@
             android:id="@+id/btn_bluetooth_le_device"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_screen_edge"
-            android:layout_marginVertical="@dimen/margin_half_screen_edge"
+            android:layout_marginHorizontal="@dimen/margin_horizontal_menu_button"
+            android:layout_marginVertical="@dimen/margin_screen_edge"
             android:background="@drawable/round_corners_view"
             android:text="@string/bluetooth_le_device"
+            app:layout_constraintBottom_toTopOf="@id/btn_bluetooth_display_list"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_username" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_bluetooth_display_list"
