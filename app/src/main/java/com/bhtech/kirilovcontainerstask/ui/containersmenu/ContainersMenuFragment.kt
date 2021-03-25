@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.bhtech.kirilovcontainerstask.databinding.FragmentContainersMenuBinding
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
@@ -67,6 +66,10 @@ class ContainersMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.containersState.observe(viewLifecycleOwner, { onContainersStateChange(it) })
         viewModel.loadContainers()
+        val containerState = viewModel.containersState.value
+        if (containerState is ContainersState.Loaded) {
+            showContainers(containerState)
+        }
     }
 
     private fun configureViews(binding: FragmentContainersMenuBinding) {
@@ -95,13 +98,13 @@ class ContainersMenuFragment : Fragment() {
         when (containersState) {
             is ContainersState.Loading -> showContainersLoading()
             is ContainersState.Empty -> showEmptyState()
-            is ContainersState.Loaded -> showContainers(containersState.containers)
+            is ContainersState.Loaded -> showContainers(containersState)
         }
     }
 
-    private fun showContainers(containers: List<Container>) {
+    private fun showContainers(containers: ContainersState.Loaded) {
         binding.pbContainersLoadingSpinner.visibility = View.GONE
-        containersRvAdapter.submitList(containers)
+        containersRvAdapter.submitList(containers.containers)
     }
 
     private fun showContainersLoading() {
