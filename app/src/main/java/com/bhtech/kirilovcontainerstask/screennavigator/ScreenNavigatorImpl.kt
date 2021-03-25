@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.ui.bluetoothdetection.BluetoothDetectionFragment
+import com.bhtech.kirilovcontainerstask.ui.cartography.CartographyFragment
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuFragment
 import com.bhtech.kirilovcontainerstask.ui.login.LoginFragment
 import com.bhtech.kirilovcontainerstask.ui.mainmenu.MainMenuFragment
@@ -25,7 +26,7 @@ class ScreenNavigatorImpl @Inject constructor(private val activity: FragmentActi
         Screen.MAIN -> MainMenuFragment()
         Screen.BLUETOOTH -> BluetoothDetectionFragment()
         Screen.CONTAINERS -> ContainersMenuFragment()
+        Screen.MAP -> CartographyFragment()
         Screen.EDIT_CONTAINER -> TODO()
-        Screen.MAP -> TODO()
     }
 }

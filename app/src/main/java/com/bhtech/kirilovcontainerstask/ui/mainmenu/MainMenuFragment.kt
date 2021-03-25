@@ -24,7 +24,7 @@ class MainMenuFragment : Fragment() {
 
     private fun setButtonListeners(binding: FragmentMainMenuBinding) {
         binding.btnMainMenuBluetooth.setOnClickListener { _ -> navigator.navigateTo(Screen.BLUETOOTH) }
-//        binding.btnMainMenuMap.setOnClickListener { _ -> navigator.navigateTo(Screen.MAP) }
+        binding.btnMainMenuMap.setOnClickListener { _ -> navigator.navigateTo(Screen.MAP) }
         binding.btnMainMenuDisconnect.setOnClickListener { _ -> navigator.navigateTo(Screen.LOGIN) }
     }
 }
