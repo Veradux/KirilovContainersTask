@@ -53,6 +53,7 @@ class BluetoothDetectionFragment : Fragment() {
 
     private fun configureViews(binding: FragmentBluetoothDetectionBinding) {
         binding.btnBluetoothLeDevice.setOnClickListener { detectDevices() }
+        binding.btnBluetoothDisplayList.setOnClickListener { navigator.navigateTo(ScreenNavigator.Screen.CONTAINERS) }
     }
 
     private fun detectDevices() {

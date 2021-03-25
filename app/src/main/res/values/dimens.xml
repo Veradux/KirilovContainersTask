@@ -13,4 +13,5 @@
     <dimen name="round_corners_drawable_radius">16dp</dimen>
 
     <dimen name="img_size_logo">256dp</dimen>
+    <dimen name="margin_horizontal_menu_button">64dp</dimen>
 </resources>
