@@ -16,16 +16,17 @@
 
         <TextView
             android:id="@+id/tv_bluetooth_username"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_screen_edge"
             android:textSize="@dimen/text_size_title"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_bluetooth_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Username" />
 
-        <TextView
+        <TextClock
             android:id="@+id/tv_bluetooth_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,46 +34,41 @@
             android:textSize="@dimen/text_size_small"
             app:layout_constraintBottom_toBottomOf="@id/tv_bluetooth_username"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_bluetooth_username"
-            tools:text="15:56 3/23/21" />
+            app:layout_constraintTop_toTopOf="@id/tv_bluetooth_username" />
 
-        <TextView
-            android:id="@+id/tv_bluetooth_detected_devices"
+        <Button
+            android:id="@+id/btn_bluetooth_le_device"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_screen_edge"
+            android:layout_marginHorizontal="@dimen/margin_screen_edge"
+            android:layout_marginVertical="@dimen/margin_half_screen_edge"
             android:background="@drawable/round_corners_view"
-            android:padding="@dimen/padding_default"
-            android:textSize="@dimen/text_size_content"
+            android:text="@string/bluetooth_le_device"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_username"
-            tools:text="Device 1\nDevice 2" />
+            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_username" />
 
         <Button
             android:id="@+id/btn_bluetooth_display_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_screen_edge"
-            android:layout_marginStart="@dimen/margin_screen_edge"
-            android:layout_marginEnd="@dimen/margin_half_screen_edge"
+            android:layout_margin="@dimen/margin_screen_edge"
             android:background="@drawable/round_corners_view"
             android:text="@string/display_list"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_bluetooth_display_map"
+            app:layout_constraintBottom_toTopOf="@id/btn_bluetooth_display_map"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_bluetooth_display_map"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin_screen_edge"
-            android:layout_marginStart="@dimen/margin_half_screen_edge"
-            android:layout_marginEnd="@dimen/margin_screen_edge"
+            android:layout_margin="@dimen/margin_screen_edge"
             android:background="@drawable/round_corners_view"
             android:text="@string/display_map"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_bluetooth_display_list" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

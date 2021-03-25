@@ -30,7 +30,7 @@ class BluetoothDetectionFragment : Fragment() {
     private val resultLauncher = registerForActivityResult(StartIntentSenderForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val scanResult = result.data?.getParcelableExtra(CompanionDeviceManager.EXTRA_DEVICE) as ScanResult?
-            binding.tvBluetoothDetectedDevices.text = scanResult.toString()
+            scanResult?.device?.createBond()
         }
     }
 
@@ -52,7 +52,7 @@ class BluetoothDetectionFragment : Fragment() {
     }
 
     private fun configureViews(binding: FragmentBluetoothDetectionBinding) {
-        binding.btnBluetoothDisplayList.setOnClickListener { detectDevices() }
+        binding.btnBluetoothLeDevice.setOnClickListener { detectDevices() }
     }
 
     private fun detectDevices() {
