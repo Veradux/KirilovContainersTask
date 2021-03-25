@@ -33,8 +33,10 @@ class ContainersMenuViewModel @Inject constructor() : ViewModel() {
     }
 
     fun loadContainers() {
-        val backgroundJob = viewModelScope.async(Dispatchers.IO) { containersService.getAllContainers() }
-        viewModelScope.launch { receiveContainers(backgroundJob.await()) }
+        if (containersState.value !is ContainersState.Loaded) {
+            val backgroundJob = viewModelScope.async(Dispatchers.IO) { containersService.getAllContainers() }
+            viewModelScope.launch { receiveContainers(backgroundJob.await()) }
+        }
     }
 
     fun getContainers() = when (val state = containersState.value) {

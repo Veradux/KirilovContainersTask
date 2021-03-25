@@ -12,7 +12,7 @@ import com.mapbox.mapboxsdk.maps.MapView
  */
 abstract class MapBoxFragment : Fragment() {
 
-    private lateinit var mapView: MapView
+    private var mapView: MapView? = null
 
     abstract fun setMapView(): MapView
 
@@ -22,42 +22,42 @@ abstract class MapBoxFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         mapView = setMapView()
     }
 
     override fun onStart() {
         super.onStart()
-        mapView.onStart()
+        mapView = setMapView()
+        mapView?.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-        mapView.onResume()
+        mapView?.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mapView.onPause()
+        mapView?.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        mapView.onStop()
+        mapView?.onStop()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mapView.onSaveInstanceState(outState)
+        mapView?.onSaveInstanceState(outState)
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView.onLowMemory()
+        mapView?.onLowMemory()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mapView.onDestroy()
+        mapView?.onDestroy()
     }
 }
