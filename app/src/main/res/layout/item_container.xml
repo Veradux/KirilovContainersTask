@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="container"
+            type="com.bhtech.kirilovcontainerstask.service.containers.model.Container" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/button_vertical_margin">
+
+        <TextView
+            android:id="@+id/item_container_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{container.name}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Container VEECH01" />
+
+        <TextView
+            android:id="@+id/item_container_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/gps_latitude(Double.toString(container.gps.lat))}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_container_name"
+            tools:text="GPS latitude: 45.13" />
+
+        <TextView
+            android:id="@+id/item_container_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/gps_longitude(Double.toString(container.gps.lng))}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_container_latitude"
+            tools:text="GPS longitude: 5.73" />
+
+        <TextView
+            android:id="@+id/item_container_waste_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/waste_type(container.wasteType)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_container_longitude"
+            tools:text="Type: Glass" />
+
+        <TextView
+            android:id="@+id/item_container_filling_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/filling_level(Integer.toString(container.fillingLevel))}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_container_waste_type"
+            tools:text="Filling level: 10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

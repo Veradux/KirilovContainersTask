@@ -7,4 +7,12 @@
     <string name="display_map">Display Map</string>
     <string name="bluetooth_le_device">Connect to a Bluetooth Low Energy Device</string>
     <string name="detected_devices_failure_message">Failed to detected devices.</string>
+
+    <string name="gps_longitude">GPS longitude: %1$s</string>
+    <string name="gps_latitude">GPS latitude: %1$s</string>
+    <string name="waste_type">Waste type: %1$s</string>
+    <string name="filling_level">Filling level: %1$s</string>
+    <string name="no_containers_found_message">No containers found.</string>
+    <string name="containers_screen_title">Containers</string>
+    <string name="filter_options_description">Show</string>
 </resources>
