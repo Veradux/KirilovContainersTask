@@ -8,7 +8,6 @@
 
     <dimen name="text_size_small">16sp</dimen>
     <dimen name="text_size_title">32sp</dimen>
-    <dimen name="text_size_content">24sp</dimen>
 
     <dimen name="round_corners_drawable_radius">16dp</dimen>
 

@@ -58,14 +58,14 @@ class ContainersMenuFragment : Fragment() {
         override fun onNothingSelected(parent: AdapterView<*>?) {}
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentContainersMenuBinding.inflate(inflater, container, false)
         configureViews(binding)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.containersState.observe(viewLifecycleOwner, Observer { onContainersStateChange(it) })
+        viewModel.containersState.observe(viewLifecycleOwner, { onContainersStateChange(it) })
         viewModel.loadContainers()
     }
 

@@ -5,6 +5,4 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class BluetoothDetectionViewModel @Inject constructor() : ViewModel() {
-
-}
+class BluetoothDetectionViewModel @Inject constructor() : ViewModel()
