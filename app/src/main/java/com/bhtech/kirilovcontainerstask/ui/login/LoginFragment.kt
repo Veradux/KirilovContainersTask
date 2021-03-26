@@ -9,7 +9,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentLoginBinding
-import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
+import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +24,7 @@ class LoginFragment : Fragment() {
 
     private fun configureViews(binding: FragmentLoginBinding) {
         setUsernameListener(binding)
+        binding.btnLogin.setOnClickListener { navigateTo(Screen.MAIN) }
         binding.etUsername.setText(getSavedUsernameFromPrefs())
     }
 
@@ -36,7 +37,7 @@ class LoginFragment : Fragment() {
                     ?.putString(getString(R.string.username_pref_key), textView.text.toString())
                     ?.apply()
 
-                navigateTo(ScreenNavigator.Screen.MAIN)
+                navigateTo(Screen.MAIN)
             }
             false
         }
