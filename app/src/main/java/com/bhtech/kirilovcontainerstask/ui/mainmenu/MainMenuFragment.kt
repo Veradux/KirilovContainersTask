@@ -6,15 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bhtech.kirilovcontainerstask.databinding.FragmentMainMenuBinding
-import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
+import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainMenuFragment : Fragment() {
-
-    @Inject lateinit var navigator: ScreenNavigator
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentMainMenuBinding.inflate(inflater, container, false)
@@ -23,8 +20,8 @@ class MainMenuFragment : Fragment() {
     }
 
     private fun setButtonListeners(binding: FragmentMainMenuBinding) {
-        binding.btnMainMenuBluetooth.setOnClickListener { navigator.navigateTo(Screen.BLUETOOTH) }
-        binding.btnMainMenuMap.setOnClickListener { navigator.navigateTo(Screen.MAP) }
-        binding.btnMainMenuDisconnect.setOnClickListener { navigator.navigateTo(Screen.LOGIN) }
+        binding.btnMainMenuBluetooth.setOnClickListener { navigateTo(Screen.BLUETOOTH) }
+        binding.btnMainMenuMap.setOnClickListener { navigateTo(Screen.MAP) }
+        binding.btnMainMenuDisconnect.setOnClickListener { navigateTo(Screen.LOGIN) }
     }
 }

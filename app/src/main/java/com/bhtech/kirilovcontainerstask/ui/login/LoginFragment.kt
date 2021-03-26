@@ -10,13 +10,11 @@ import androidx.fragment.app.Fragment
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentLoginBinding
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
+import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-
-    @Inject lateinit var navigator: ScreenNavigator
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentLoginBinding.inflate(inflater, container, false)
@@ -38,7 +36,7 @@ class LoginFragment : Fragment() {
                     ?.putString(getString(R.string.username_pref_key), textView.text.toString())
                     ?.apply()
 
-                navigator.navigateTo(ScreenNavigator.Screen.MAIN)
+                navigateTo(ScreenNavigator.Screen.MAIN)
             }
             false
         }

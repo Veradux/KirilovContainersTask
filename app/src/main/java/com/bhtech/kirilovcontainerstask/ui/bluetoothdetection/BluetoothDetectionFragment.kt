@@ -17,15 +17,13 @@ import androidx.activity.result.contract.ActivityResultContracts.StartIntentSend
 import androidx.fragment.app.Fragment
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentBluetoothDetectionBinding
-import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
+import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class BluetoothDetectionFragment : Fragment() {
 
-    @Inject lateinit var navigator: ScreenNavigator
     private lateinit var binding: FragmentBluetoothDetectionBinding
 
     private val resultLauncher = registerForActivityResult(StartIntentSenderForResult()) { result ->
@@ -55,8 +53,8 @@ class BluetoothDetectionFragment : Fragment() {
     private fun configureViews(binding: FragmentBluetoothDetectionBinding) {
         binding.tvBluetoothUsername.text = getSavedUsernameFromPrefs()
         binding.btnBluetoothLeDevice.setOnClickListener { detectDevices() }
-        binding.btnBluetoothDisplayList.setOnClickListener { navigator.navigateTo(Screen.CONTAINERS) }
-        binding.btnBluetoothDisplayMap.setOnClickListener { navigator.navigateTo(Screen.MAP) }
+        binding.btnBluetoothDisplayList.setOnClickListener { navigateTo(Screen.CONTAINERS) }
+        binding.btnBluetoothDisplayMap.setOnClickListener { navigateTo(Screen.MAP) }
     }
 
     private fun getSavedUsernameFromPrefs(): String = activity?.getPreferences(Context.MODE_PRIVATE)

@@ -22,6 +22,7 @@ import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewMode
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_GLASS
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_HOUSEHOLD_GARBAGE
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_PAPER
+import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
@@ -56,7 +57,6 @@ class CartographyFragment : MapBoxFragment() {
 
     private val viewModel: ContainersMenuViewModel by activityViewModels()
     private lateinit var binding: FragmentCartographyBinding
-    @Inject lateinit var navigator: ScreenNavigator
     private lateinit var symbolManager: SymbolManager
 
     private val onMapReadyCallback = OnMapReadyCallback { mapboxMap ->
@@ -110,7 +110,7 @@ class CartographyFragment : MapBoxFragment() {
         try {
             val objType = object : TypeToken<Container>() {}.type
             viewModel.selectedContainer = Gson().fromJson(symbol.data, objType)
-            navigator.navigateTo(Screen.EDIT_CONTAINER)
+            navigateTo(Screen.EDIT_CONTAINER)
             true
         } catch (e: JsonSyntaxException) {
             false
@@ -174,7 +174,7 @@ class CartographyFragment : MapBoxFragment() {
     private fun getMapBoxInstance() = context?.let { Mapbox.getInstance(it, getString(R.string.mapbox_access_token)) }
 
     private fun configureViews(binding: FragmentCartographyBinding, savedInstanceState: Bundle?) {
-        binding.btnContainers.setOnClickListener { navigator.navigateTo(Screen.CONTAINERS) }
+        binding.btnContainers.setOnClickListener { navigateTo(Screen.CONTAINERS) }
 
         binding.mapCartography.onCreate(savedInstanceState)
         binding.mapCartography.getMapAsync(onMapReadyCallback)

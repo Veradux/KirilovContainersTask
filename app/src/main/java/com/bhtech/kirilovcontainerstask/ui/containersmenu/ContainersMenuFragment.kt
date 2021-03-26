@@ -16,6 +16,7 @@ import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel.ContainersState
+import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -24,7 +25,6 @@ class ContainersMenuFragment : Fragment() {
 
     private val viewModel: ContainersMenuViewModel by activityViewModels()
     private lateinit var binding: FragmentContainersMenuBinding
-    @Inject lateinit var navigator: ScreenNavigator
     private val containersRvAdapter = ContainersAdapter(::onContainerClicked)
 
     private val spinnerFilterOnItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -81,7 +81,7 @@ class ContainersMenuFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 1)
         }
 
-        binding.btnMap.setOnClickListener { navigator.navigateTo(Screen.MAP) }
+        binding.btnMap.setOnClickListener { navigateTo(Screen.MAP) }
         configureFilterSpinner()
     }
 
@@ -96,7 +96,7 @@ class ContainersMenuFragment : Fragment() {
 
     private fun onContainerClicked(container: Container) {
         viewModel.selectedContainer = container
-        navigator.navigateTo(Screen.EDIT_CONTAINER)
+        navigateTo(Screen.EDIT_CONTAINER)
     }
 
     private fun onContainersStateChange(containersState: ContainersState) {
