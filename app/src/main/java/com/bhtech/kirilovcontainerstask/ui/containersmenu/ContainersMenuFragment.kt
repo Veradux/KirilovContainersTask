@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bhtech.kirilovcontainerstask.databinding.FragmentContainersMenuBinding
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
@@ -71,8 +72,14 @@ class ContainersMenuFragment : Fragment() {
     }
 
     private fun configureViews(binding: FragmentContainersMenuBinding) {
-        binding.rvContainers.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        binding.rvContainers.adapter = containersRvAdapter
+        with(binding.rvContainers) {
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            adapter = containersRvAdapter
+            // This use case of a recycler view should get LinearLayoutManager.
+            // But LLM for some reason overwrites match_parent to wrap_content by calling autoMeasure(),
+            // which causes layout issues.
+            layoutManager = GridLayoutManager(context, 1)
+        }
 
         binding.btnMap.setOnClickListener { navigator.navigateTo(Screen.MAP) }
         configureFilterSpinner()
