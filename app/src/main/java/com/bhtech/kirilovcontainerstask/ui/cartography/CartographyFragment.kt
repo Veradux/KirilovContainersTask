@@ -46,7 +46,7 @@ private const val REQUEST_CODE_FINE_LOCATION_PERMISSION = 1
 private const val REQUEST_LOCATION_INTERVAL = 5000L
 private const val REQUEST_LOCATION_FASTEST_INTERVAL = 1000L
 private const val SYMBOL_ICON_SIZE = 1f
-private const val INITIAL_ZOOM_LEVEL = 10.0
+private const val INITIAL_ZOOM_LEVEL = 7.0
 
 private const val FILLING_LEVEL_GREEN_UPPER_BOUND = 50
 private const val FILLING_LEVEL_YELLOW_UPPER_BOUND = 75
