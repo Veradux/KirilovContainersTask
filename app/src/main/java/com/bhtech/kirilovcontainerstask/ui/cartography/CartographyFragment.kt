@@ -15,12 +15,8 @@ import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentCartographyBinding
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
-import com.bhtech.kirilovcontainerstask.ui.base.MapBoxFragment
-import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel
-import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel.ContainersState
-import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_GLASS
-import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_HOUSEHOLD_GARBAGE
-import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_PAPER
+import com.bhtech.kirilovcontainerstask.ui.base.*
+import com.bhtech.kirilovcontainerstask.ui.base.ContainersMenuViewModel.ContainersState
 import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException

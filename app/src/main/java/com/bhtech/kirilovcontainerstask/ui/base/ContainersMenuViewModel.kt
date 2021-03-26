@@ -1,4 +1,4 @@
-package com.bhtech.kirilovcontainerstask.ui.containersmenu
+package com.bhtech.kirilovcontainerstask.ui.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +25,10 @@ val CONTAINER_FILTER_OPTIONS = listOf(
     WASTE_TYPE_HOUSEHOLD_GARBAGE
 )
 
+/**
+ * A shared view model between the containers menu and the cartography fragments,
+ * which both use the same set of containers data.
+ */
 @HiltViewModel
 class ContainersMenuViewModel @Inject constructor() : ViewModel() {
 
@@ -53,17 +57,17 @@ class ContainersMenuViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun getContainers() = when (val state = containersState.value) {
+    fun getContainers(): List<Container> = when (val state = containersState.value) {
         is ContainersState.Loaded -> state.containers
         else -> emptyList()
     }
 
-    fun getStateWithReplacedContainer(new: Container, old: Container): ContainersState =
+    fun setStateWithReplacedContainer(new: Container, old: Container) =
         when (val state = containersState.value) {
             is ContainersState.Loaded -> {
                 val newList = state.containers.map { if (it == old) new else it }
-                ContainersState.Loaded(newList)
+                containersState.value = ContainersState.Loaded(newList)
             }
-            else -> ContainersState.Empty
+            else -> containersState.value = containersState.value
         }
 }

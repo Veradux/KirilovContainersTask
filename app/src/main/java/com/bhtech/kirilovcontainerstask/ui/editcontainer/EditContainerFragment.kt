@@ -10,7 +10,7 @@ import com.bhtech.kirilovcontainerstask.BR
 import com.bhtech.kirilovcontainerstask.databinding.FragmentEditContainerBinding
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
 import com.bhtech.kirilovcontainerstask.service.containers.model.Gps
-import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel
+import com.bhtech.kirilovcontainerstask.ui.base.ContainersMenuViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +33,7 @@ class EditContainerFragment : Fragment() {
     private fun updateContainersWithChanges() {
         viewModel.selectedContainer?.let { editedContainer ->
             val newContainer = getNewContainerFrom(editedContainer)
-            viewModel.containersState.value = viewModel.getStateWithReplacedContainer(newContainer, editedContainer)
+            viewModel.setStateWithReplacedContainer(newContainer, editedContainer)
             viewModel.selectedContainer = newContainer
         }
     }
