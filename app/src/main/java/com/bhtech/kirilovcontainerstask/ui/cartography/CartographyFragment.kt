@@ -3,12 +3,13 @@ package com.bhtech.kirilovcontainerstask.ui.cartography
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Bundle
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentCartographyBinding
@@ -21,16 +22,14 @@ import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewMode
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_GLASS
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_HOUSEHOLD_GARBAGE
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.WASTE_TYPE_PAPER
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
+import com.mapbox.android.core.location.LocationEngineRequest
 import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
+import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
@@ -46,8 +45,8 @@ import javax.inject.Inject
 private const val REQUEST_CODE_FINE_LOCATION_PERMISSION = 1
 private const val REQUEST_LOCATION_INTERVAL = 5000L
 private const val REQUEST_LOCATION_FASTEST_INTERVAL = 1000L
-private const val CAMERA_INITIAL_ZOOM = 12.0
-private const val SYMBOL_ICON_SIZE = 2f
+private const val SYMBOL_ICON_SIZE = 1f
+private const val INITIAL_ZOOM_LEVEL = 10.0
 
 private const val FILLING_LEVEL_GREEN_UPPER_BOUND = 50
 private const val FILLING_LEVEL_YELLOW_UPPER_BOUND = 75
@@ -59,20 +58,32 @@ class CartographyFragment : MapBoxFragment() {
     private lateinit var binding: FragmentCartographyBinding
     @Inject lateinit var navigator: ScreenNavigator
     private lateinit var symbolManager: SymbolManager
-    private val userLocationSymbol by lazy<SymbolOptions> {
-        SymbolOptions()
-            .withIconImage(getString(R.string.user_location_icon))
-            .withIconColor(getHexValueFrom(R.color.colorPrimary))
-            .withIconSize(SYMBOL_ICON_SIZE)
-    }
 
 
     private val onMapReadyCallback = OnMapReadyCallback { mapboxMap ->
         mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
+            addImagesTo(style)
             symbolManager = SymbolManager(binding.mapCartography, mapboxMap, style)
             symbolManager.addClickListener(getOnContainerClickListener())
-            startLocationUpdates(mapboxMap)
+            symbolManager.iconAllowOverlap = true
+            startLocationUpdates(mapboxMap, style)
             viewModel.containersState.value?.let { addMapBoxMarkersIfLoaded(it) }
+        }
+    }
+
+    private fun addImagesTo(style: Style) {
+        context?.let { context ->
+            AppCompatResources.getDrawable(context, R.drawable.waste_icon_glass)?.toBitmap()
+                ?.let { style.addImage(getString(R.string.glass_icon_id), it, true) }
+
+            AppCompatResources.getDrawable(context, R.drawable.waste_icon_paper)?.toBitmap()
+                ?.let { style.addImage(getString(R.string.paper_icon_id), it, true) }
+
+            AppCompatResources.getDrawable(context, R.drawable.waste_icon_household_garbage)?.toBitmap()
+                ?.let { style.addImage(getString(R.string.household_garbage_icon_id), it, true) }
+
+            AppCompatResources.getDrawable(context, R.drawable.waste_icon_default)?.toBitmap()
+                ?.let { style.addImage(getString(R.string.default_waste_type_icon_id), it, true) }
         }
     }
 
@@ -100,6 +111,7 @@ class CartographyFragment : MapBoxFragment() {
         try {
             val objType = object : TypeToken<Container>() {}.type
             viewModel.selectedContainer = Gson().fromJson(symbol.data, objType)
+            navigator.navigateTo(Screen.EDIT_CONTAINER)
             true
         } catch (e: JsonSyntaxException) {
             false
@@ -109,7 +121,6 @@ class CartographyFragment : MapBoxFragment() {
     private fun getSymbolOptionsFrom(containers: List<Container>): List<SymbolOptions> {
         return containers.map { container ->
             SymbolOptions().withLatLng(LatLng(container.gps.lat, container.gps.lng))
-                // TODO set appropriate image and color
                 .withIconImage(getContainerImage(container.wasteType))
                 .withIconColor(getContainerImageColor(container.fillingLevel))
                 .withIconSize(SYMBOL_ICON_SIZE)
@@ -117,6 +128,7 @@ class CartographyFragment : MapBoxFragment() {
         }
     }
 
+    //region parent methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         requestFineLocationPermissions()
         getMapBoxInstance()
@@ -137,13 +149,14 @@ class CartographyFragment : MapBoxFragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
+    //endregion
 
     @AfterPermissionGranted(REQUEST_CODE_FINE_LOCATION_PERMISSION)
     private fun requestFineLocationPermissions() {
         if (!EasyPermissions.hasPermissions(context, ACCESS_FINE_LOCATION)) {
             EasyPermissions.requestPermissions(
                 host = this,
-                rationale = getString(R.string.permission_fine_location_rationale_message), // TODO fix message
+                rationale = getString(R.string.permission_fine_location_rationale_message),
                 requestCode = REQUEST_CODE_FINE_LOCATION_PERMISSION,
                 ACCESS_FINE_LOCATION
             )
@@ -168,30 +181,26 @@ class CartographyFragment : MapBoxFragment() {
         binding.mapCartography.getMapAsync(onMapReadyCallback)
     }
 
-    private fun startLocationUpdates(mapboxMap: MapboxMap) {
+    private fun startLocationUpdates(mapboxMap: MapboxMap, style: Style) {
         if (ActivityCompat.checkSelfPermission(requireContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
-            // TODO request perms if they are not given.
-            FusedLocationProviderClient(requireContext()).requestLocationUpdates(
-                getLocationRequest(),
-                getLocationCallback(mapboxMap),
-                Looper.getMainLooper()
-            )
-        }
-    }
+            val locationOptions = LocationComponentActivationOptions
+                .builder(requireContext(), style)
+                .useDefaultLocationEngine(true)
+                .locationEngineRequest(getLocationRequest())
+                .build()
 
-    private fun getLocationRequest() = LocationRequest.create()?.apply {
-        interval = REQUEST_LOCATION_INTERVAL
-        fastestInterval = REQUEST_LOCATION_FASTEST_INTERVAL
-        priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
-    }
-
-    private fun getLocationCallback(mapboxMap: MapboxMap) = object : LocationCallback() {
-        override fun onLocationResult(result: LocationResult?) {
-            result?.lastLocation?.let {
-                val position = LatLng(it.latitude, it.longitude)
-                symbolManager.create(userLocationSymbol.withLatLng(position))
-                mapboxMap.animateCamera { CameraPosition.Builder().target(position).zoom(CAMERA_INITIAL_ZOOM).build() }
+            with(mapboxMap.locationComponent) {
+                activateLocationComponent(locationOptions)
+                isLocationComponentEnabled = true
+                cameraMode = CameraMode.TRACKING_GPS_NORTH
+                zoomWhileTracking(INITIAL_ZOOM_LEVEL)
+                forceLocationUpdate(lastKnownLocation)
             }
         }
     }
+
+    private fun getLocationRequest() = LocationEngineRequest.Builder(REQUEST_LOCATION_INTERVAL)
+        .setFastestInterval(REQUEST_LOCATION_FASTEST_INTERVAL)
+        .setPriority(LocationEngineRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+        .build()
 }
