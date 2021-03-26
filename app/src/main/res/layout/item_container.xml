@@ -17,9 +17,10 @@
 
         <TextView
             android:id="@+id/item_container_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{container.name}"
+            android:textSize="@dimen/text_size_small"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/gps_latitude(Double.toString(container.gps.lat))}"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_container_name"
             tools:text="GPS latitude: 45.13" />
@@ -39,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/gps_longitude(Double.toString(container.gps.lng))}"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_container_latitude"
             tools:text="GPS longitude: 5.73" />
@@ -48,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/waste_type(container.wasteType)}"
+            android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_container_longitude"
             tools:text="Type: Glass" />
@@ -56,10 +60,16 @@
             android:id="@+id/item_container_filling_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:background="@drawable/round_corners_view_dark"
+            android:paddingHorizontal="@dimen/padding_default"
+            android:paddingVertical="4dp"
             android:text="@{@string/filling_level(Integer.toString(container.fillingLevel))}"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_container_waste_type"
-            tools:text="Filling level: 10" />
+            tools:text="Filling level: 55" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -26,7 +26,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class BluetoothDetectionFragment : Fragment() {
 
-    private val viewModel: BluetoothDetectionViewModel by viewModels()
     @Inject lateinit var navigator: ScreenNavigator
     private lateinit var binding: FragmentBluetoothDetectionBinding
 
