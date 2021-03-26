@@ -1,6 +1,7 @@
 ## Table of contents
 * [Kirilov Containers Task](#kirilov-containers-task)
 * [Application Description](#application-description)
+* [Demployment](#deployment)
 * [Major-Dependencies](#major-dependencies)
 * [To be improved](#to-be-improved)
 
@@ -11,7 +12,11 @@ A task used for evaluating the skills of the author (me) in mobile development.
 An Android application developed with Kotlin, used for tracking waste containers by their locations and filling level. Provides an interactible map to display containers and the ability to edit them. Includes Bluetooth Low Energy connectivity for nearby Low Energy devices.
 
 ## Deployment
-?
+* Download Android Sdk.
+* Add environment variable with value set to the directory of ...Android\Sdk\platform-tools
+* Connect phone to PC.
+* Enable USB Debugging on phone.
+* In the directory of the sent .apk, run in terminal `adb install KirilovContainersTask.apk`
 
 ## Major Dependencies
 * `hilt-android`
