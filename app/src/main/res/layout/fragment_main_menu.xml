@@ -27,6 +27,7 @@
             android:layout_marginVertical="@dimen/margin_vertical"
             android:background="@drawable/round_corners_view"
             android:text="@string/bluetooth_detection"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_login_logo" />
 
@@ -38,6 +39,7 @@
             android:layout_marginVertical="@dimen/margin_vertical"
             android:background="@drawable/round_corners_view"
             android:text="@string/display_map"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_main_menu_bluetooth" />
 
@@ -49,6 +51,7 @@
             android:layout_marginVertical="@dimen/margin_vertical"
             android:background="@drawable/round_corners_view"
             android:text="@string/disconnect"
+            android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_main_menu_map" />
 

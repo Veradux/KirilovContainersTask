@@ -23,6 +23,7 @@
             android:layout_marginVertical="@dimen/margin_screen_edge"
             android:background="@drawable/round_corners_view"
             android:text="@string/display_list"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
