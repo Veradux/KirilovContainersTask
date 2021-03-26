@@ -16,6 +16,7 @@ An Android application developed with Kotlin, used for tracking waste containers
 * An environment variable exists, with the value containing the directory of ...Android\Sdk\platform-tools
 * Phone is connected to PC.
 * USB Debugging is enabled.
+
 Then, in the directory of the sent .apk, run in terminal `adb install KirilovContainersTask.apk`
 
 ## Major Dependencies
