@@ -59,7 +59,6 @@ class CartographyFragment : MapBoxFragment() {
     @Inject lateinit var navigator: ScreenNavigator
     private lateinit var symbolManager: SymbolManager
 
-
     private val onMapReadyCallback = OnMapReadyCallback { mapboxMap ->
         mapboxMap.setStyle(Style.MAPBOX_STREETS) { style ->
             addImagesTo(style)

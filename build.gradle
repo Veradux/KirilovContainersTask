@@ -14,7 +14,8 @@ buildscript {
             }
             credentials {
                 username = 'mapbox'
-                password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
+                // TODO This is the secret MapBox token, which should be obtained through an API call.
+                password = 'sk.eyJ1Ijoic3RldmVua3IiLCJhIjoiY2ttb3ZyMXZ1MjhlZDJ2cW92bmFzM3NodCJ9.stvCMWt3OryHkbabuYyp2g'
             }
         }
     }

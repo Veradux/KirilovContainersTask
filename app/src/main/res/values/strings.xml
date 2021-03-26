@@ -15,7 +15,6 @@
     <string name="containers_screen_title">Containers</string>
 
     <string name="permission_fine_location_rationale_message">Location permissions are required to display your current location.</string>
-    <string name="user_location_icon">circle-stroked-15</string>
 
     <string name="paper_icon_id">waste-icon-paper</string>
     <string name="glass_icon_id">waste-icon-glass</string>
