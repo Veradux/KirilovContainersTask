@@ -11,7 +11,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// TODO move to strings.xml
 const val FILTER_OPTIONS_MESSAGE = "Filter Waste Type"
 const val WASTE_TYPE_ALL = "All"
 const val WASTE_TYPE_GLASS = "Glass"

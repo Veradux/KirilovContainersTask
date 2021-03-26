@@ -88,8 +88,8 @@ class ContainersMenuFragment : Fragment() {
     }
 
     private fun onContainerClicked(container: Container) {
-        navigator.navigateTo(Screen.EDIT_CONTAINER)
         viewModel.selectedContainer = container
+        navigator.navigateTo(Screen.EDIT_CONTAINER)
     }
 
     private fun onContainersStateChange(containersState: ContainersState) {

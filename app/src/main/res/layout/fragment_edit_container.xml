@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_edit_container_screen_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            android:text="@string/edit_container_screen_title"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_container_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            android:text="@string/edit_container_name_hint"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="@id/ed_edit_name"
+            app:layout_constraintEnd_toStartOf="@id/ed_edit_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ed_edit_name" />
+
+        <EditText
+            android:id="@+id/ed_edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_start_edit_container"
+            android:layout_marginTop="@dimen/margin_screen_edge"
+            android:layout_marginEnd="@dimen/margin_screen_edge"
+            android:layout_marginBottom="@dimen/margin_half_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:hint="@string/edit_container_name_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:padding="@dimen/padding_default"
+            android:selectAllOnFocus="true"
+            android:text="@{viewModel.selectedContainer.name}"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_edit_container_screen_title"
+            tools:text="Container VEECH01" />
+
+        <TextView
+            android:id="@+id/tv_container_latitude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            android:text="@string/edit_container_latitude_hint"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="@id/ed_edit_latitude"
+            app:layout_constraintEnd_toStartOf="@id/ed_edit_latitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ed_edit_latitude" />
+
+        <EditText
+            android:id="@+id/ed_edit_latitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_half_screen_edge"
+            android:layout_marginStart="@dimen/margin_start_edit_container"
+            android:layout_marginEnd="@dimen/margin_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:hint="@string/edit_container_latitude_hint"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:padding="@dimen/padding_default"
+            android:selectAllOnFocus="true"
+            android:text="@{Integer.toString(viewModel.selectedContainer.gps.lat)}"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_edit_name"
+            tools:text="Latitude" />
+
+        <TextView
+            android:id="@+id/tv_container_longitude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            android:text="@string/edit_container_longitude_hint"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="@id/ed_edit_longitude"
+            app:layout_constraintEnd_toStartOf="@id/ed_edit_longitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ed_edit_longitude" />
+
+        <EditText
+            android:id="@+id/ed_edit_longitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_half_screen_edge"
+            android:layout_marginStart="@dimen/margin_start_edit_container"
+            android:layout_marginEnd="@dimen/margin_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:hint="@string/edit_container_longitude_hint"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:padding="@dimen/padding_default"
+            android:selectAllOnFocus="true"
+            android:text="@{Integer.toString(viewModel.selectedContainer.gps.lng)}"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_edit_latitude"
+            tools:text="Longitude" />
+
+        <TextView
+            android:id="@+id/tv_container_waste_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_container_waste_type_hint"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="@id/ed_edit_waste_type"
+            app:layout_constraintEnd_toStartOf="@id/ed_edit_waste_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ed_edit_waste_type" />
+
+        <EditText
+            android:id="@+id/ed_edit_waste_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_half_screen_edge"
+            android:layout_marginStart="@dimen/margin_start_edit_container"
+            android:layout_marginEnd="@dimen/margin_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:hint="@string/edit_container_waste_type_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:padding="@dimen/padding_default"
+            android:selectAllOnFocus="true"
+            android:text="@{viewModel.selectedContainer.wasteType}"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_edit_longitude"
+            tools:text="Waste Type" />
+
+        <TextView
+            android:id="@+id/tv_container_filling_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_container_filling_level_hint"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="@id/ed_edit_filling_level"
+            app:layout_constraintEnd_toStartOf="@id/ed_edit_filling_level"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ed_edit_filling_level" />
+
+        <EditText
+            android:id="@+id/ed_edit_filling_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_half_screen_edge"
+            android:layout_marginStart="@dimen/margin_start_edit_container"
+            android:layout_marginEnd="@dimen/margin_screen_edge"
+            android:background="@drawable/round_corners_view"
+            android:hint="@string/edit_container_filling_level_hint"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:padding="@dimen/padding_default"
+            android:selectAllOnFocus="true"
+            android:text="@{Integer.toString(viewModel.selectedContainer.fillingLevel)}"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="@id/tv_container_filling_level"
+            app:layout_constraintTop_toBottomOf="@id/ed_edit_waste_type"
+            tools:text="10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -13,9 +13,7 @@
     <string name="filling_level">Filling level: %1$s</string>
     <string name="no_containers_found_message">No containers found.</string>
     <string name="containers_screen_title">Containers</string>
-    <string name="username_pref_key">USERNAME_PREF_KEY</string>
 
-    <string name="mapbox_access_token">pk.eyJ1Ijoic3RldmVua3IiLCJhIjoiY2ttb2I4ZHg2MjMyNTJvazVwZXBuOTA3MCJ9.4GDuAXIDfvus8LlC0XWRpA</string>
     <string name="permission_fine_location_rationale_message">Location permissions are required to display your current location.</string>
     <string name="user_location_icon">circle-stroked-15</string>
 
@@ -23,4 +21,14 @@
     <string name="glass_icon_id">waste-icon-glass</string>
     <string name="household_garbage_icon_id">waste-icon-household-garbage</string>
     <string name="default_waste_type_icon_id">waste-icon-default</string>
+
+    <string name="edit_container_filling_level_hint">Filling Level</string>
+    <string name="edit_container_waste_type_hint">Waste Type</string>
+    <string name="edit_container_latitude_hint">Latitude</string>
+    <string name="edit_container_longitude_hint">Longitude</string>
+    <string name="edit_container_name_hint">Name</string>
+
+    <string name="username_pref_key">USERNAME_PREF_KEY</string>
+    <string name="mapbox_access_token">pk.eyJ1Ijoic3RldmVua3IiLCJhIjoiY2ttb2I4ZHg2MjMyNTJvazVwZXBuOTA3MCJ9.4GDuAXIDfvus8LlC0XWRpA</string>
+    <string name="edit_container_screen_title">Edit Container</string>
 </resources>
