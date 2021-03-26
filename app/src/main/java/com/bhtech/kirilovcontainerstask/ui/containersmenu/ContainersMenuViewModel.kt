@@ -57,4 +57,12 @@ class ContainersMenuViewModel @Inject constructor() : ViewModel() {
         is ContainersState.Loaded -> state.containers
         else -> emptyList()
     }
+
+    fun getStateWithReplacedContainer(new: Container, old: Container): ContainersState =
+        when (val state = containersState.value) {
+            is ContainersState.Loaded -> {
+                ContainersState.Loaded(state.containers.minusElement(old).plusElement(new))
+            }
+            else -> ContainersState.Empty
+        }
 }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel" />
+            name="selectedContainer"
+            type="com.bhtech.kirilovcontainerstask.service.containers.model.Container" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,7 +50,7 @@
             android:inputType="text"
             android:padding="@dimen/padding_default"
             android:selectAllOnFocus="true"
-            android:text="@{viewModel.selectedContainer.name}"
+            android:text="@{selectedContainer.name}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_edit_container_screen_title"
@@ -81,7 +81,7 @@
             android:inputType="numberDecimal"
             android:padding="@dimen/padding_default"
             android:selectAllOnFocus="true"
-            android:text="@{Integer.toString(viewModel.selectedContainer.gps.lat)}"
+            android:text="@{Integer.toString(selectedContainer.gps.lat)}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
             android:inputType="numberDecimal"
             android:padding="@dimen/padding_default"
             android:selectAllOnFocus="true"
-            android:text="@{Integer.toString(viewModel.selectedContainer.gps.lng)}"
+            android:text="@{Integer.toString(selectedContainer.gps.lng)}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ed_edit_latitude"
@@ -143,7 +143,7 @@
             android:inputType="text"
             android:padding="@dimen/padding_default"
             android:selectAllOnFocus="true"
-            android:text="@{viewModel.selectedContainer.wasteType}"
+            android:text="@{selectedContainer.wasteType}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ed_edit_longitude"
@@ -173,7 +173,7 @@
             android:inputType="number"
             android:padding="@dimen/padding_default"
             android:selectAllOnFocus="true"
-            android:text="@{Integer.toString(viewModel.selectedContainer.fillingLevel)}"
+            android:text="@{Integer.toString(selectedContainer.fillingLevel)}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="@id/tv_container_filling_level"
             app:layout_constraintTop_toBottomOf="@id/ed_edit_waste_type"
