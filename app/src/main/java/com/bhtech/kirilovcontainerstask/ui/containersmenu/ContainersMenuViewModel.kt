@@ -11,6 +11,21 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// TODO move to strings.xml
+const val FILTER_OPTIONS_MESSAGE = "Filter Waste Type"
+const val WASTE_TYPE_ALL = "All"
+const val WASTE_TYPE_GLASS = "Glass"
+const val WASTE_TYPE_PAPER = "Paper"
+const val WASTE_TYPE_HOUSEHOLD_GARBAGE = "Household Garbage"
+
+val CONTAINER_FILTER_OPTIONS = listOf(
+    FILTER_OPTIONS_MESSAGE,
+    WASTE_TYPE_ALL,
+    WASTE_TYPE_GLASS,
+    WASTE_TYPE_PAPER,
+    WASTE_TYPE_HOUSEHOLD_GARBAGE
+)
+
 @HiltViewModel
 class ContainersMenuViewModel @Inject constructor() : ViewModel() {
 

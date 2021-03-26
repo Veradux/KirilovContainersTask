@@ -18,8 +18,6 @@ import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewMode
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-private val CONTAINER_FILTER_OPTIONS = listOf("Filter Waste Type", "All", "Glass", "Paper", "Household Garbage")
-
 @AndroidEntryPoint
 class ContainersMenuFragment : Fragment() {
 

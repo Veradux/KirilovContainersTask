@@ -16,5 +16,11 @@
     <string name="username_pref_key">USERNAME_PREF_KEY</string>
 
     <string name="mapbox_access_token">pk.eyJ1Ijoic3RldmVua3IiLCJhIjoiY2ttb2I4ZHg2MjMyNTJvazVwZXBuOTA3MCJ9.4GDuAXIDfvus8LlC0XWRpA</string>
-    <string name="permission_fine_location_rationale_message">Gimme perms, pls</string>
+    <string name="permission_fine_location_rationale_message">Location permissions are required to display your current location.</string>
+    <string name="user_location_icon">circle-stroked-15</string>
+
+    <string name="paper_icon_id">waste-icon-paper</string>
+    <string name="glass_icon_id">waste-icon-glass</string>
+    <string name="household_garbage_icon_id">waste-icon-household-garbage</string>
+    <string name="default_waste_type_icon_id">waste-icon-default</string>
 </resources>
