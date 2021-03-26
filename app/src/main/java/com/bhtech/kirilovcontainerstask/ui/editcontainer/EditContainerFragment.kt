@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.bhtech.kirilovcontainerstask.BR
 import com.bhtech.kirilovcontainerstask.databinding.FragmentEditContainerBinding
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
 import com.bhtech.kirilovcontainerstask.service.containers.model.Gps

@@ -31,10 +31,10 @@
             android:layout_margin="@dimen/margin_screen_edge"
             android:text="@string/edit_container_name_hint"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintBottom_toBottomOf="@id/ed_edit_name"
-            app:layout_constraintEnd_toStartOf="@id/ed_edit_name"
+            app:layout_constraintBottom_toBottomOf="@+id/ed_edit_name"
+            app:layout_constraintEnd_toStartOf="@+id/ed_edit_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ed_edit_name" />
+            app:layout_constraintTop_toTopOf="@+id/ed_edit_name" />
 
         <EditText
             android:id="@+id/ed_edit_name"
@@ -53,7 +53,7 @@
             android:text="@{selectedContainer.name}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_edit_container_screen_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_edit_container_screen_title"
             tools:text="Container VEECH01" />
 
         <TextView
@@ -63,10 +63,10 @@
             android:layout_margin="@dimen/margin_screen_edge"
             android:text="@string/edit_container_latitude_hint"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintBottom_toBottomOf="@id/ed_edit_latitude"
-            app:layout_constraintEnd_toStartOf="@id/ed_edit_latitude"
+            app:layout_constraintBottom_toBottomOf="@+id/ed_edit_latitude"
+            app:layout_constraintEnd_toStartOf="@+id/ed_edit_latitude"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ed_edit_latitude" />
+            app:layout_constraintTop_toTopOf="@+id/ed_edit_latitude" />
 
         <EditText
             android:id="@+id/ed_edit_latitude"
@@ -85,8 +85,8 @@
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ed_edit_name"
-            tools:text="Latitude" />
+            app:layout_constraintTop_toBottomOf="@+id/ed_edit_name"
+            tools:text="45.346" />
 
         <TextView
             android:id="@+id/tv_container_longitude"
@@ -95,10 +95,10 @@
             android:layout_margin="@dimen/margin_screen_edge"
             android:text="@string/edit_container_longitude_hint"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintBottom_toBottomOf="@id/ed_edit_longitude"
-            app:layout_constraintEnd_toStartOf="@id/ed_edit_longitude"
+            app:layout_constraintBottom_toBottomOf="@+id/ed_edit_longitude"
+            app:layout_constraintEnd_toStartOf="@+id/ed_edit_longitude"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ed_edit_longitude" />
+            app:layout_constraintTop_toTopOf="@+id/ed_edit_longitude" />
 
         <EditText
             android:id="@+id/ed_edit_longitude"
@@ -116,8 +116,8 @@
             android:text="@{Integer.toString(selectedContainer.gps.lng)}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ed_edit_latitude"
-            tools:text="Longitude" />
+            app:layout_constraintTop_toBottomOf="@+id/ed_edit_latitude"
+            tools:text="56.345" />
 
         <TextView
             android:id="@+id/tv_container_waste_type"
@@ -125,10 +125,10 @@
             android:layout_height="wrap_content"
             android:text="@string/edit_container_waste_type_hint"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintBottom_toBottomOf="@id/ed_edit_waste_type"
-            app:layout_constraintEnd_toStartOf="@id/ed_edit_waste_type"
+            app:layout_constraintBottom_toBottomOf="@+id/ed_edit_waste_type"
+            app:layout_constraintEnd_toStartOf="@+id/ed_edit_waste_type"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ed_edit_waste_type" />
+            app:layout_constraintTop_toTopOf="@+id/ed_edit_waste_type" />
 
         <EditText
             android:id="@+id/ed_edit_waste_type"
@@ -146,7 +146,7 @@
             android:text="@{selectedContainer.wasteType}"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ed_edit_longitude"
+            app:layout_constraintTop_toBottomOf="@+id/ed_edit_longitude"
             tools:text="Waste Type" />
 
         <TextView
@@ -155,10 +155,10 @@
             android:layout_height="wrap_content"
             android:text="@string/edit_container_filling_level_hint"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintBottom_toBottomOf="@id/ed_edit_filling_level"
-            app:layout_constraintEnd_toStartOf="@id/ed_edit_filling_level"
+            app:layout_constraintBottom_toBottomOf="@+id/ed_edit_filling_level"
+            app:layout_constraintEnd_toStartOf="@+id/ed_edit_filling_level"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ed_edit_filling_level" />
+            app:layout_constraintTop_toTopOf="@+id/ed_edit_filling_level" />
 
         <EditText
             android:id="@+id/ed_edit_filling_level"
@@ -175,8 +175,8 @@
             android:selectAllOnFocus="true"
             android:text="@{Integer.toString(selectedContainer.fillingLevel)}"
             android:textSize="@dimen/text_size_small"
-            app:layout_constraintStart_toStartOf="@id/tv_container_filling_level"
-            app:layout_constraintTop_toBottomOf="@id/ed_edit_waste_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_container_filling_level"
+            app:layout_constraintTop_toBottomOf="@+id/ed_edit_waste_type"
             tools:text="10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
