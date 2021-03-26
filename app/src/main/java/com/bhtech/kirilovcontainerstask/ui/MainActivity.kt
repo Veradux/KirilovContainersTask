@@ -56,8 +56,14 @@ class MainActivity : AppCompatActivity(), ScreenNavigator {
 
         fragmentManager.popBackStack(fragmentClassName, 0)
         fragmentManager.executePendingTransactions()
-
         return fragment
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+        }
     }
 
     private fun attachNewView(fragmentManager: FragmentManager, viewClassName: String): Fragment {
