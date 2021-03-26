@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel" />
+            type="com.bhtech.kirilovcontainerstask.ui.base.ContainersMenuViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
