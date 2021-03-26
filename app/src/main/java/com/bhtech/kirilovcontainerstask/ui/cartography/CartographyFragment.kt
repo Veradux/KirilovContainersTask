@@ -13,7 +13,6 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentCartographyBinding
-import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
 import com.bhtech.kirilovcontainerstask.ui.base.MapBoxFragment
@@ -41,7 +40,6 @@ import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 private const val REQUEST_CODE_FINE_LOCATION_PERMISSION = 1
 private const val REQUEST_LOCATION_INTERVAL = 5000L

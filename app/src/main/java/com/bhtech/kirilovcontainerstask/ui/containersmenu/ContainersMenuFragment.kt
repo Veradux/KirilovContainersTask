@@ -12,13 +12,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bhtech.kirilovcontainerstask.databinding.FragmentContainersMenuBinding
-import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator
 import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.service.containers.model.Container
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuViewModel.ContainersState
 import com.bhtech.kirilovcontainerstask.ui.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ContainersMenuFragment : Fragment() {

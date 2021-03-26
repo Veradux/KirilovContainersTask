@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bhtech.kirilovcontainerstask.R
 import com.bhtech.kirilovcontainerstask.databinding.FragmentLoginBinding
@@ -24,22 +25,27 @@ class LoginFragment : Fragment() {
 
     private fun configureViews(binding: FragmentLoginBinding) {
         setUsernameListener(binding)
-        binding.btnLogin.setOnClickListener { navigateTo(Screen.MAIN) }
+        binding.btnLogin.setOnClickListener { onLoginListener(binding.etUsername) }
         binding.etUsername.setText(getSavedUsernameFromPrefs())
     }
 
     private fun setUsernameListener(binding: FragmentLoginBinding) {
         binding.etUsername.setOnEditorActionListener { textView, action, _ ->
-            if (action == EditorInfo.IME_ACTION_DONE && textView.text.isNotBlank()) {
-
-                activity?.getPreferences(Context.MODE_PRIVATE)
-                    ?.edit()
-                    ?.putString(getString(R.string.username_pref_key), textView.text.toString())
-                    ?.apply()
-
-                navigateTo(Screen.MAIN)
+            if (action == EditorInfo.IME_ACTION_DONE) {
+                onLoginListener(textView)
             }
             false
+        }
+    }
+
+    private fun onLoginListener(textView: TextView) {
+        if (textView.text.isNotBlank()) {
+            activity?.getPreferences(Context.MODE_PRIVATE)
+                ?.edit()
+                ?.putString(getString(R.string.username_pref_key), textView.text.toString())
+                ?.apply()
+
+            navigateTo(Screen.MAIN)
         }
     }
 
