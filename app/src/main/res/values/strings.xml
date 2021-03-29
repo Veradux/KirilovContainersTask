@@ -14,7 +14,7 @@
     <string name="no_containers_found_message">No containers found.</string>
     <string name="containers_screen_title">Containers</string>
 
-    <string name="permission_fine_location_rationale_message">Location permissions are required to display your current location.</string>
+    <string name="permission_fine_location_rationale_message">To access the Map screen, location permissions are required to display your current location.</string>
 
     <string name="paper_icon_id">waste-icon-paper</string>
     <string name="glass_icon_id">waste-icon-glass</string>

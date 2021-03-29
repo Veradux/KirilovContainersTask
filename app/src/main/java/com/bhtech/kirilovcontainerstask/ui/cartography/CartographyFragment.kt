@@ -34,10 +34,8 @@ import com.mapbox.mapboxsdk.plugins.annotation.OnSymbolClickListener
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions
 import com.vmadalin.easypermissions.EasyPermissions
-import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
 import dagger.hilt.android.AndroidEntryPoint
 
-private const val REQUEST_CODE_FINE_LOCATION_PERMISSION = 1
 private const val REQUEST_LOCATION_INTERVAL = 5000L
 private const val REQUEST_LOCATION_FASTEST_INTERVAL = 1000L
 private const val SYMBOL_ICON_SIZE = 1f
@@ -123,7 +121,6 @@ class CartographyFragment : MapBoxFragment() {
 
     //region parent methods
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        requestFineLocationPermissions()
         getMapBoxInstance()
         binding = FragmentCartographyBinding.inflate(inflater, container, false)
         configureViews(binding, savedInstanceState)
@@ -136,25 +133,7 @@ class CartographyFragment : MapBoxFragment() {
     }
 
     override fun setMapView(): MapView = binding.mapCartography
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        // TODO update to registerForActivityResult
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-    }
     //endregion
-
-    @AfterPermissionGranted(REQUEST_CODE_FINE_LOCATION_PERMISSION)
-    private fun requestFineLocationPermissions() {
-        if (!EasyPermissions.hasPermissions(context, ACCESS_FINE_LOCATION)) {
-            EasyPermissions.requestPermissions(
-                host = this,
-                rationale = getString(R.string.permission_fine_location_rationale_message),
-                requestCode = REQUEST_CODE_FINE_LOCATION_PERMISSION,
-                ACCESS_FINE_LOCATION
-            )
-        }
-    }
 
     private fun addMapBoxMarkersIfLoaded(containersState: ContainersState) {
         if (containersState is ContainersState.Loaded && this::symbolManager.isInitialized) {
