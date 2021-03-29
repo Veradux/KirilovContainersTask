@@ -31,4 +31,4 @@ Aspects of the application which could be done better outside of the time constr
 * Permissions management.
 * Error handling, in cases such as services not providing the requested data.
 * Testing, both unit and UI. 
-* More specifically follow specifications for the BLE implementation, which requests automatic scanning. The current implementation requires manual scanning through the tap of a button, but despite that it includes BLE device pairing.
+* More specifically follow specifications for the BLE implementation, which requests automatic scanning. The current implementation requires manual scanning through the tap of a button, but despite that it includes BLE device pairing. To use this feature, make sure that Bluetooth is enabled on your device.
