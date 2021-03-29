@@ -28,7 +28,7 @@ Then, in the directory of the sent .apk, run in terminal `adb install KirilovCon
 ## To be improved
 Aspects of the application which could be done better outside of the time constraints for the test.
 * Abstraction in fragments in the form of an architecture.
-* Permissions management. For example, the first time the app requests location permissions, the GPS tracking does not function properly, until the app is restarted. Though these things would be easily fixable, if more time was available.
+* Permissions management.
 * Error handling, in cases such as services not providing the requested data.
 * Testing, both unit and UI. 
 * More specifically follow specifications for the BLE implementation, which requests automatic scanning. The current implementation requires manual scanning through the tap of a button, but despite that it includes BLE device pairing.
