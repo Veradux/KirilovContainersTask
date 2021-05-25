@@ -14,6 +14,7 @@ interface ScreenNavigator {
         BLUETOOTH,
         MAP,
         CONTAINERS,
-        EDIT_CONTAINER
+        EDIT_CONTAINER,
+        DAY_NIGHT
     }
 }

@@ -63,6 +63,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    implementation 'com.bozapro.circular-slider-range:library:1.2.0'
 
     // Map
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.7'

@@ -12,6 +12,7 @@ import com.bhtech.kirilovcontainerstask.screennavigator.ScreenNavigator.Screen
 import com.bhtech.kirilovcontainerstask.ui.bluetoothdetection.BluetoothDetectionFragment
 import com.bhtech.kirilovcontainerstask.ui.cartography.CartographyFragment
 import com.bhtech.kirilovcontainerstask.ui.containersmenu.ContainersMenuFragment
+import com.bhtech.kirilovcontainerstask.ui.daynight.DayNightFragment
 import com.bhtech.kirilovcontainerstask.ui.editcontainer.EditContainerFragment
 import com.bhtech.kirilovcontainerstask.ui.login.LoginFragment
 import com.bhtech.kirilovcontainerstask.ui.mainmenu.MainMenuFragment
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity(), ScreenNavigator {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            navigateTo(Screen.LOGIN)
+            navigateTo(Screen.DAY_NIGHT)
         }
     }
 
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity(), ScreenNavigator {
         Screen.CONTAINERS -> ContainersMenuFragment::class.java.canonicalName
         Screen.MAP -> CartographyFragment::class.java.canonicalName
         Screen.EDIT_CONTAINER -> EditContainerFragment::class.java.canonicalName
+        Screen.DAY_NIGHT -> DayNightFragment::class.java.canonicalName
     }
 
     private fun popBackStackTo(fragmentManager: FragmentManager, fragmentClassName: String): Fragment? {

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bhtech.kirilovcontainerstask.ui.daynight.DayNightViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/start_thumb_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/end_thumb_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_screen_edge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.bozapro.circularsliderrange.CircularSliderRange
+            android:id="@+id/day_night_slider"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:padding="@dimen/margin_screen_edge"
+            app:arc_color="#2D4A60"
+            app:border_color="#F6F041"
+            app:border_thickness="22dp"
+            app:end_angle="0"
+            app:end_thumb_color="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/start_thumb_position"
+            app:start_angle="180"
+            app:start_thumb_color="@android:color/white"
+            app:thumb_size="32dp" />
+
+        <Button
+            android:id="@+id/validate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="320dp"
+            android:background="@android:color/white"
+            android:ellipsize="end"
+            android:paddingHorizontal="32dp"
+            android:text="Validate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/day_night_slider" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
