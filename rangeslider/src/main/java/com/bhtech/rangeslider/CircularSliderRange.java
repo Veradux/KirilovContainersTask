@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -13,6 +14,8 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.Locale;
 
 public class CircularSliderRange extends View {
 
@@ -52,6 +55,8 @@ public class CircularSliderRange extends View {
         void onEndSliderEvent(ThumbEvent event);
     }
 
+    public static final int DEFAULT_THUMB_STROKE_WIDTH = 3;
+
     private int mThumbStartX;
     private int mThumbStartY;
 
@@ -69,6 +74,7 @@ public class CircularSliderRange extends View {
     private int mEndThumbSize;
     private int mStartThumbColor;
     private int mEndThumbColor;
+    private int mThumbStrokeColor;
     private int mBorderColor;
     private int mBorderThickness;
     private int mArcDashSize;
@@ -151,6 +157,7 @@ public class CircularSliderRange extends View {
         int startThumbSize = a.getDimensionPixelSize(R.styleable.CircularSliderRange_start_thumb_size, THUMB_SIZE_NOT_DEFINED);
         int endThumbSize = a.getDimensionPixelSize(R.styleable.CircularSliderRange_end_thumb_size, THUMB_SIZE_NOT_DEFINED);
         int thumbColor = a.getColor(R.styleable.CircularSliderRange_start_thumb_color, Color.GRAY);
+        int thumbStrokeColor = a.getColor(R.styleable.CircularSliderRange_thumb_stroke_color, -1);
         int thumbEndColor = a.getColor(R.styleable.CircularSliderRange_end_thumb_color, Color.GRAY);
         int borderThickness = a.getDimensionPixelSize(R.styleable.CircularSliderRange_border_thickness, 20);
         int arcDashSize = a.getDimensionPixelSize(R.styleable.CircularSliderRange_arc_dash_size, 60);
@@ -172,6 +179,7 @@ public class CircularSliderRange extends View {
         setEndThumbImage(thumbEndImage);
         setStartThumbColor(thumbColor);
         setEndThumbColor(thumbEndColor);
+        setThumbStrokeColor(thumbStrokeColor);
         setArcColor(arcColor);
         setArcDashSize(arcDashSize);
         setLineCap(lineCap);
@@ -259,6 +267,10 @@ public class CircularSliderRange extends View {
         mEndThumbColor = color;
     }
 
+    public void setThumbStrokeColor(int color) {
+        mThumbStrokeColor = color;
+    }
+
     public void setPadding(int padding) {
         mPadding = padding;
     }
@@ -271,7 +283,9 @@ public class CircularSliderRange extends View {
         mArcDashSize = value;
     }
 
-    public void setLineCap(LineCap value) { mLineCap = value; }
+    public void setLineCap(LineCap value) {
+        mLineCap = value;
+    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -299,7 +313,7 @@ public class CircularSliderRange extends View {
 
         // outer circle (ring)
         mPaint.setColor(mBorderColor);
-        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStyle(Style.STROKE);
         mPaint.setStrokeWidth(mBorderThickness);
         mPaint.setAntiAlias(true);
         canvas.drawCircle(mCircleCenterX, mCircleCenterY, mCircleRadius, mPaint);
@@ -312,8 +326,9 @@ public class CircularSliderRange extends View {
         mThumbEndX = (int) (mCircleCenterX + mCircleRadius * Math.cos(mAngleEnd));
         mThumbEndY = (int) (mCircleCenterY - mCircleRadius * Math.sin(mAngleEnd));
 
+        // draw the arc between the thumbs
         mLinePaint.setColor(mArcColor == 0 ? Color.RED : mArcColor);
-        mLinePaint.setStyle(Paint.Style.STROKE);
+        mLinePaint.setStyle(Style.STROKE);
         mLinePaint.setStrokeWidth(mArcDashSize);
         mLinePaint.setAntiAlias(true);
         mLinePaint.setTextSize(50);
@@ -333,15 +348,18 @@ public class CircularSliderRange extends View {
             mStartThumbImage.setBounds(mThumbStartX - mThumbSize / 2, mThumbStartY - mThumbSize / 2, mThumbStartX + mThumbSize / 2, mThumbStartY + mThumbSize / 2);
             mStartThumbImage.draw(canvas);
         } else {
-            // draw colored circle
+            // draw start thumb circle
             mPaint.setColor(mStartThumbColor);
-            mPaint.setStyle(Paint.Style.FILL);
+            mPaint.setStyle(Style.FILL);
             canvas.drawCircle(mThumbStartX, mThumbStartY, mThumbSize / 2f, mPaint);
 
-            //helper text, used for debugging
-            //mLinePaint.setStrokeWidth(5);
-            //canvas.drawText(String.format(Locale.US, "%.1f", drawStart), mThumbStartX - 20, mThumbStartY, mLinePaint);
-            //canvas.drawText(String.format(Locale.US, "%.1f", drawEnd), mThumbEndX - 20, mThumbEndY, mLinePaint);
+            // draw start thumb outline
+            if (mThumbStrokeColor != -1) {
+                mPaint.setStyle(Style.STROKE);
+                mPaint.setStrokeWidth(DEFAULT_THUMB_STROKE_WIDTH);
+                mPaint.setColor(mThumbStrokeColor);
+                canvas.drawCircle(mThumbStartX, mThumbStartY, mThumbSize / 2f, mPaint);
+            }
         }
 
         mThumbSize = getEndThumbSize();
@@ -350,9 +368,18 @@ public class CircularSliderRange extends View {
             mEndThumbImage.setBounds(mThumbEndX - mThumbSize / 2, mThumbEndY - mThumbSize / 2, mThumbEndX + mThumbSize / 2, mThumbEndY + mThumbSize / 2);
             mEndThumbImage.draw(canvas);
         } else {
-            mPaint.setStyle(Paint.Style.FILL);
+            // draw end thumb circle
+            mPaint.setStyle(Style.FILL);
             mPaint.setColor(mEndThumbColor);
             canvas.drawCircle(mThumbEndX, mThumbEndY, mThumbSize / 2f, mPaint);
+
+            // draw end thumb outline
+            if (mThumbStrokeColor != -1) {
+                mPaint.setStyle(Style.STROKE);
+                mPaint.setStrokeWidth(DEFAULT_THUMB_STROKE_WIDTH);
+                mPaint.setColor(mThumbStrokeColor);
+                canvas.drawCircle(mThumbEndX, mThumbEndY, mThumbSize / 2f, mPaint);
+            }
         }
     }
 

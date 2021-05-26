@@ -31,12 +31,13 @@
 
         <com.bhtech.rangeslider.CircularSliderRange
             android:id="@+id/day_night_slider"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:padding="@dimen/margin_screen_edge"
+            android:padding="60dp"
             app:arc_color="#2D4A60"
+            app:arc_dash_size="16dp"
             app:border_color="#F6F041"
-            app:border_thickness="22dp"
+            app:border_thickness="16dp"
             app:end_angle="0"
             app:end_thumb_color="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,8 @@
             app:layout_constraintTop_toTopOf="@id/start_thumb_position"
             app:start_angle="180"
             app:start_thumb_color="@android:color/white"
-            app:thumb_size="32dp" />
+            app:thumb_size="24dp"
+            app:thumb_stroke_color="@android:color/black" />
 
         <Button
             android:id="@+id/validate_button"
