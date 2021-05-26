@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bhtech.kirilovcontainerstask.databinding.FragmentDayNightBinding
-import com.bozapro.circularsliderrange.CircularSliderRange.OnSliderRangeMovedListener
-import com.bozapro.circularsliderrange.ThumbEvent
+import com.bhtech.rangeslider.CircularSliderRange
+import com.bhtech.rangeslider.ThumbEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +31,7 @@ class DayNightFragment : Fragment() {
     }
 
     private fun setUpRangeSlider(binding: FragmentDayNightBinding) {
-        binding.dayNightSlider.setOnSliderRangeMovedListener(object : OnSliderRangeMovedListener {
+        binding.dayNightSlider.setOnSliderRangeMovedListener(object : CircularSliderRange.OnSliderRangeMovedListener {
             override fun onStartSliderMoved(pos: Double) {
                 binding.startThumbPosition.text = pos.toString()
                 if (pos < 150 && pos > 30) {

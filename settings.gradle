@@ -1,2 +1,3 @@
+include ':rangeslider'
 include ':app'
 rootProject.name = "bhTtrial"
