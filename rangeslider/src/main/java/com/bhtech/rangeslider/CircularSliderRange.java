@@ -55,7 +55,12 @@ public class CircularSliderRange extends View {
         void onEndSliderEvent(ThumbEvent event);
     }
 
-    public static final int DEFAULT_THUMB_STROKE_WIDTH = 3;
+    public static final int MAX_CIRCLE_DEGREES = 360;
+    public static final int DEFAULT_THUMB_STROKE_WIDTH = 2;
+    // TODO the start and end of the available range can be added as view attributes eventually.
+    public static final int START_RANGE_FOR_START_THUMB = 150;
+    public static final int END_RANGE_FOR_END_THUMB = 30;
+    private static final int THUMB_SIZE_NOT_DEFINED = -1;
 
     private int mThumbStartX;
     private int mThumbStartY;
@@ -80,8 +85,8 @@ public class CircularSliderRange extends View {
     private int mArcDashSize;
     private int mArcColor;
     private LineCap mLineCap;
-    private double mAngle;
-    private double mAngleEnd;
+    private double startThumbAngle;
+    private double endThumbAngle;
     private boolean mIsThumbSelected = false;
     private boolean mIsThumbEndSelected = false;
 
@@ -90,7 +95,6 @@ public class CircularSliderRange extends View {
     private RectF arcRectF = new RectF();
     private Rect arcRect = new Rect();
     private OnSliderRangeMovedListener mListener;
-    private static final int THUMB_SIZE_NOT_DEFINED = -1;
 
     private enum Thumb {
         START, END
@@ -205,7 +209,7 @@ public class CircularSliderRange extends View {
      * @param startAngle value in degrees.
      */
     public void setStartAngle(double startAngle) {
-        mAngle = fromDrawingAngle(startAngle);
+        startThumbAngle = fromDrawingAngle(startAngle);
     }
 
     /**
@@ -215,7 +219,7 @@ public class CircularSliderRange extends View {
      * @param angle value in degrees.
      */
     public void setEndAngle(double angle) {
-        mAngleEnd = fromDrawingAngle(angle);
+        endThumbAngle = fromDrawingAngle(angle);
     }
 
     public void setThumbSize(int thumbSize) {
@@ -319,12 +323,12 @@ public class CircularSliderRange extends View {
         canvas.drawCircle(mCircleCenterX, mCircleCenterY, mCircleRadius, mPaint);
 
         // find thumb start position
-        mThumbStartX = (int) (mCircleCenterX + mCircleRadius * Math.cos(mAngle));
-        mThumbStartY = (int) (mCircleCenterY - mCircleRadius * Math.sin(mAngle));
+        mThumbStartX = (int) (mCircleCenterX + mCircleRadius * Math.cos(startThumbAngle));
+        mThumbStartY = (int) (mCircleCenterY - mCircleRadius * Math.sin(startThumbAngle));
 
         //find thumb end position
-        mThumbEndX = (int) (mCircleCenterX + mCircleRadius * Math.cos(mAngleEnd));
-        mThumbEndY = (int) (mCircleCenterY - mCircleRadius * Math.sin(mAngleEnd));
+        mThumbEndX = (int) (mCircleCenterX + mCircleRadius * Math.cos(endThumbAngle));
+        mThumbEndY = (int) (mCircleCenterY - mCircleRadius * Math.sin(endThumbAngle));
 
         // draw the arc between the thumbs
         mLinePaint.setColor(mArcColor == 0 ? Color.RED : mArcColor);
@@ -338,10 +342,10 @@ public class CircularSliderRange extends View {
         arcRectF.set(arcRect);
         arcRectF.sort();
 
-        final float drawStart = toDrawingAngle(mAngle);
-        final float drawEnd = toDrawingAngle(mAngleEnd);
+        final float drawStart = toDrawingAngle(startThumbAngle);
+        final float drawEnd = toDrawingAngle(endThumbAngle);
 
-        canvas.drawArc(arcRectF, drawStart, (360 + drawEnd - drawStart) % 360, false, mLinePaint);
+        canvas.drawArc(arcRectF, drawStart, (MAX_CIRCLE_DEGREES + drawEnd - drawStart) % MAX_CIRCLE_DEGREES, false, mLinePaint);
         int mThumbSize = getStartThumbSize();
         if (mStartThumbImage != null) {
             // draw png
@@ -381,6 +385,22 @@ public class CircularSliderRange extends View {
                 canvas.drawCircle(mThumbEndX, mThumbEndY, mThumbSize / 2f, mPaint);
             }
         }
+
+        // TODO organize, make constants
+        float angleRange = MAX_CIRCLE_DEGREES - START_RANGE_FOR_START_THUMB;
+
+        float minTextOffset = MAX_CIRCLE_DEGREES;
+        float maxTextOffset = 150;
+        float textOffsetRange = maxTextOffset - minTextOffset;
+
+        float startOffsetFromAngle = drawStart * textOffsetRange / angleRange + minTextOffset;
+        float endOffsetFromAngle = drawEnd * textOffsetRange / angleRange + minTextOffset;
+
+        // TODO previously used as helper text, used for debugging.
+        //  Eventually it should display the chosen start and end values.
+        mLinePaint.setStyle(Style.FILL);
+        canvas.drawText(String.format(Locale.US, "%.1f", drawStart), mThumbStartX - startOffsetFromAngle, mThumbStartY - 40, mLinePaint);
+        canvas.drawText(String.format(Locale.US, "%.1f", drawEnd), mThumbEndX - endOffsetFromAngle, mThumbEndY - 40, mLinePaint);
     }
 
     /**
@@ -397,26 +417,41 @@ public class CircularSliderRange extends View {
         if (distanceY < 0)
             angle = -angle;
 
-        if (thumb == Thumb.START) {
-            mAngle = angle;
-        } else {
-            mAngleEnd = angle;
+        // If the user attempts to move the thumb from the bottom to the other side,
+        // this will cancel the MotionEvent.ACTION_MOVE to stop them from looping the thumb around.
+        float drawingAngle = toDrawingAngle(angle);
+        if (drawingAngle > 80 && drawingAngle < 100) {
+            mIsThumbSelected = false;
+            mIsThumbEndSelected = false;
         }
 
-        if (mListener != null) {
-
-            if (thumb == Thumb.START) {
+        if (thumb == Thumb.START) {
+            if (isNumberInOverflowedRange(drawingAngle, START_RANGE_FOR_START_THUMB, toDrawingAngle(endThumbAngle), MAX_CIRCLE_DEGREES)) {
+                startThumbAngle = angle;
                 mListener.onStartSliderMoved(toDrawingAngle(angle));
-            } else {
+            }
+        } else if (thumb == Thumb.END) {
+            if (isNumberInOverflowedRange(drawingAngle, toDrawingAngle(startThumbAngle), END_RANGE_FOR_END_THUMB, MAX_CIRCLE_DEGREES)) {
+                endThumbAngle = angle;
                 mListener.onEndSliderMoved(toDrawingAngle(angle));
             }
         }
     }
 
+    private boolean isNumberInOverflowedRange(float number, float rangeStart, float rangeEnd, float maxNumber) {
+        if (rangeEnd < rangeStart) {
+            rangeEnd += maxNumber;
+        }
+        if (number < rangeStart) {
+            number += maxNumber;
+        }
+        return number > rangeStart && number < rangeEnd;
+    }
+
     private float toDrawingAngle(double angleInRadians) {
         double fixedAngle = Math.toDegrees(angleInRadians);
         if (angleInRadians > 0)
-            fixedAngle = 360 - fixedAngle;
+            fixedAngle = MAX_CIRCLE_DEGREES - fixedAngle;
         else
             fixedAngle = -fixedAngle;
         return (float) fixedAngle;
