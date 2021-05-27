@@ -16,7 +16,7 @@ import android.view.View;
 
 import java.util.Locale;
 
-public class CircularSliderRange extends View {
+public class CircularRangeSlider extends View {
 
     /**
      * Listener interface used to detect when slider moves around.
@@ -129,39 +129,39 @@ public class CircularSliderRange extends View {
         }
     }
 
-    public CircularSliderRange(Context context) {
+    public CircularRangeSlider(Context context) {
         this(context, null);
     }
 
-    public CircularSliderRange(Context context, AttributeSet attrs) {
+    public CircularRangeSlider(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CircularSliderRange(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CircularRangeSlider(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }
 
     // common initializer method
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircularSliderRange, defStyleAttr, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircularRangeSlider, defStyleAttr, 0);
 
         // read all available attributes
-        float startAngle = a.getFloat(R.styleable.CircularSliderRange_start_angle, 90);
-        float endAngle = a.getFloat(R.styleable.CircularSliderRange_end_angle, 60);
-        int thumbSize = a.getDimensionPixelSize(R.styleable.CircularSliderRange_thumb_size, 50);
-        startThumbSize = a.getDimensionPixelSize(R.styleable.CircularSliderRange_start_thumb_size, THUMB_SIZE_NOT_DEFINED);
-        endThumbSize = a.getDimensionPixelSize(R.styleable.CircularSliderRange_end_thumb_size, THUMB_SIZE_NOT_DEFINED);
-        startThumbColor = a.getColor(R.styleable.CircularSliderRange_start_thumb_color, Color.GRAY);
-        thumbStrokeColor = a.getColor(R.styleable.CircularSliderRange_thumb_stroke_color, -1);
-        endThumbColor = a.getColor(R.styleable.CircularSliderRange_end_thumb_color, Color.GRAY);
-        borderThickness = a.getDimensionPixelSize(R.styleable.CircularSliderRange_border_thickness, 20);
-        arcDashSize = a.getDimensionPixelSize(R.styleable.CircularSliderRange_arc_dash_size, 60);
-        arcColor = a.getColor(R.styleable.CircularSliderRange_arc_color, 0);
-        borderColor = a.getColor(R.styleable.CircularSliderRange_border_color, Color.RED);
-        startThumbImage = a.getDrawable(R.styleable.CircularSliderRange_start_thumb_image);
-        endThumbImage = a.getDrawable(R.styleable.CircularSliderRange_end_thumb_image);
-        lineCap = LineCap.fromId(a.getInt(R.styleable.CircularSliderRange_line_cap, 0));
+        float startAngle = a.getFloat(R.styleable.CircularRangeSlider_start_angle, 90);
+        float endAngle = a.getFloat(R.styleable.CircularRangeSlider_end_angle, 60);
+        int thumbSize = a.getDimensionPixelSize(R.styleable.CircularRangeSlider_thumb_size, 50);
+        startThumbSize = a.getDimensionPixelSize(R.styleable.CircularRangeSlider_start_thumb_size, THUMB_SIZE_NOT_DEFINED);
+        endThumbSize = a.getDimensionPixelSize(R.styleable.CircularRangeSlider_end_thumb_size, THUMB_SIZE_NOT_DEFINED);
+        startThumbColor = a.getColor(R.styleable.CircularRangeSlider_start_thumb_color, Color.GRAY);
+        thumbStrokeColor = a.getColor(R.styleable.CircularRangeSlider_thumb_stroke_color, -1);
+        endThumbColor = a.getColor(R.styleable.CircularRangeSlider_end_thumb_color, Color.GRAY);
+        borderThickness = a.getDimensionPixelSize(R.styleable.CircularRangeSlider_border_thickness, 20);
+        arcDashSize = a.getDimensionPixelSize(R.styleable.CircularRangeSlider_arc_dash_size, 60);
+        arcColor = a.getColor(R.styleable.CircularRangeSlider_arc_color, 0);
+        borderColor = a.getColor(R.styleable.CircularRangeSlider_border_color, Color.RED);
+        startThumbImage = a.getDrawable(R.styleable.CircularRangeSlider_start_thumb_image);
+        endThumbImage = a.getDrawable(R.styleable.CircularRangeSlider_end_thumb_image);
+        lineCap = LineCap.fromId(a.getInt(R.styleable.CircularRangeSlider_line_cap, 0));
 
         setStartAngle(startAngle);
         setEndAngle(endAngle);

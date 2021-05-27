@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="CircularSliderRange">
+    <declare-styleable name="CircularRangeSlider">
         <attr name="start_angle" format="float" />
         <attr name="end_angle" format="float" />
         <attr name="border_thickness" format="dimension" />
